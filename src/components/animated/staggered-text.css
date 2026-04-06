@@ -1,0 +1,11 @@
+.staggered-text {
+  margin: 0;
+}
+
+.staggered-text--flex {
+  display: inline;
+}
+
+.staggered-text--block {
+  display: block;
+}

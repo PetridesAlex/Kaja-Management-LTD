@@ -38,7 +38,7 @@ export default function TestimonialsSection() {
     <section className="mt-20">
       <SectionTitle eyebrow="Testimonials" title="What Clients Say" />
 
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-[#f8fbfa] to-[#eef5f1] border border-slate-100 shadow-card p-6 md:p-8">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-page to-pageSoft border border-accent/20 shadow-card p-6 md:p-8">
         <div className="absolute -top-8 -left-8 h-36 w-36 rounded-full bg-accent/15 blur-2xl" />
         <div className="absolute -bottom-10 -right-10 h-40 w-40 rounded-full bg-secondary/20 blur-2xl" />
 

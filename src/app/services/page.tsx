@@ -85,7 +85,7 @@ const steps = [
 export default function ServicesPage() {
   return (
     <PageContainer>
-      <section className="mt-8">
+      <section className="mt-8" id="communal-property-management">
         <div className="relative overflow-hidden rounded-[30px] min-h-[340px] md:min-h-[420px] mb-10">
           <Image
             src="/images/claning-services/proffesional-property-services.webp"
@@ -94,8 +94,8 @@ export default function ServicesPage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f172abf] via-[#1f2937a8] to-[#1f5a4a88]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(176,138,87,0.4),transparent_40%)]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brandDeep/80 via-brand/65 to-secondary/55" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(176,138,87,0.33),transparent_40%)]" />
           <div className="relative z-10 h-full px-6 md:px-10 py-10 md:py-12 flex flex-col justify-end">
             <p className="text-xs tracking-[0.2em] text-white/80 font-semibold">WHAT WE DO</p>
             <h1 className="text-white text-4xl md:text-6xl font-bold mt-3 max-w-3xl">Professional Property Services</h1>
@@ -123,6 +123,15 @@ export default function ServicesPage() {
           {services.map((service, index) => (
             <article
               key={service.id}
+              id={
+                service.id === "s1"
+                  ? "individual-property-management"
+                  : service.id === "s2"
+                    ? "cleaning-services"
+                    : service.id === "s3"
+                      ? "renovation-services"
+                      : undefined
+              }
               className="bg-white rounded-2xl p-6 shadow-card border border-slate-100 hover:-translate-y-1 hover:shadow-xl transition"
             >
               <div className="flex items-center justify-between">
@@ -150,7 +159,7 @@ export default function ServicesPage() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f172acc] via-[#1f2937aa] to-[#1f5a4a88]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-brandDeep/85 via-brand/70 to-secondary/55" />
           <div className="relative z-10 h-full p-6 md:p-8 flex flex-col justify-end">
             <p className="text-white/80 text-xs tracking-[0.2em] font-semibold">TURNOVER SOLUTIONS</p>
             <h3 className="text-white text-3xl md:text-4xl font-bold mt-2 max-w-2xl">
@@ -163,9 +172,9 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        <div className="rounded-[28px] bg-gradient-to-br from-white via-[#f8fbfa] to-[#eef5f1] p-5 md:p-8 shadow-card">
+        <div className="rounded-[28px] bg-gradient-to-br from-page via-page to-pageSoft p-5 md:p-8 shadow-card">
           <div className="grid xl:grid-cols-12 gap-5">
-            <article className="xl:col-span-5 relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#121c29] via-[#1c2d3d] to-[#15493d] text-white p-6 md:p-7 shadow-card border border-white/10">
+            <article className="xl:col-span-5 relative overflow-hidden rounded-3xl bg-gradient-to-br from-brandDeep via-brand to-secondary text-white p-6 md:p-7 shadow-card border border-accent/25">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(176,138,87,0.26),transparent_42%)]" />
               <div className="absolute inset-0 bg-[linear-gradient(125deg,rgba(255,255,255,0.06),transparent_35%,rgba(255,255,255,0.03)_65%,transparent_100%)]" />
 
@@ -250,7 +259,7 @@ export default function ServicesPage() {
             </div>
           </article>
 
-          <article className="bg-gradient-to-br from-[#1f2937] to-[#1f5a4a] rounded-3xl p-6 md:p-8 text-white shadow-card">
+          <article className="bg-gradient-to-br from-brand to-secondary rounded-3xl p-6 md:p-8 text-white shadow-card">
             <h3 className="text-2xl font-semibold">Starting From</h3>
             <div className="mt-5 space-y-3">
               <div className="rounded-xl bg-white/10 p-4">

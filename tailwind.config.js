@@ -4,11 +4,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "#1f2937",
-        accent: "#b08a57",
-        secondary: "#1f5a4a",
+        brand: "#223848",
+        brandDeep: "#142734",
+        brandSoft: "#39586b",
+        accent: "#c29a66",
+        accentSoft: "#d8b58a",
+        secondary: "#2d6a5a",
+        secondarySoft: "#3f8571",
         muted: "#6b7280",
-        page: "#f4f1ea"
+        page: "#f6f1e8",
+        pageSoft: "#ece3d4"
       },
       fontFamily: {
         body: ["var(--font-body)"],

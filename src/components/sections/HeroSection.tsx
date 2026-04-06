@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import StaggeredText from "@/components/animated/StaggeredText";
 
 export default function HeroSection() {
   return (
@@ -15,9 +16,18 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_22%,rgba(197,157,95,0.30),transparent_42%)]" />
       <div className="relative mx-auto max-w-[1400px] px-5 md:px-10 min-h-screen flex flex-col justify-center">
         <div className="max-w-3xl">
-          <h1 className="hero-fade-in-up text-white text-4xl md:text-7xl font-bold leading-tight tracking-[0.02em]">
-            FIND YOUR NEXT PROPERTY
-          </h1>
+          <StaggeredText
+            text="FIND YOUR NEXT PROPERTY"
+            segmentBy="words"
+            direction="top"
+            delay={80}
+            duration={0.6}
+            blur
+            staggerDirection="forward"
+            exitOnScrollOut
+            className="text-white text-4xl md:text-7xl font-bold leading-tight tracking-[0.02em]"
+            as="h1"
+          />
           <p className="hero-fade-in-up-delay-1 text-slate-100 mt-5 max-w-2xl text-base md:text-xl">
             Modern brokerage and property management with premium service and transparent communication.
           </p>

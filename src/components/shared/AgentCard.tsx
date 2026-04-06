@@ -6,7 +6,7 @@ export default function AgentCard({ agent }: { agent: Agent }) {
   const mailHref = `mailto:${agent.email}`;
 
   return (
-    <article className="relative overflow-hidden rounded-3xl border border-slate-200/80 bg-gradient-to-br from-white via-[#f8fbfa] to-[#eef5f1] p-5 md:p-6 shadow-card">
+    <article className="relative overflow-hidden rounded-3xl border border-accent/20 bg-gradient-to-br from-white via-page to-pageSoft p-5 md:p-6 shadow-card">
       <div className="absolute right-0 top-0 h-24 w-24 rounded-full bg-accent/15 blur-2xl" />
 
       <div className="relative z-10 flex flex-col md:flex-row md:items-start md:justify-between gap-5">

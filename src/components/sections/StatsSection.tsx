@@ -1,10 +1,10 @@
 import SectionTitle from "@/components/shared/SectionTitle";
 
 const stats = [
-  { label: "BUILDINGS", value: "30+" },
-  { label: "UNITS", value: "380+" },
-  { label: "YEARS OF EXPERIENCE", value: "15+" },
-  { label: "SATISFIED CLIENTS", value: "1.2K+" }
+  { label: "BUILDINGS", value: "5+" },
+  { label: "UNITS", value: "40+" },
+  { label: "YEARS OF EXPERIENCE", value: "10+" },
+  { label: "SATISFIED CLIENTS", value: "400+" }
 ];
 
 export default function StatsSection() {

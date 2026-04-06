@@ -4,8 +4,8 @@
 
 html,
 body {
-  background: radial-gradient(circle at top right, #f8f5ee 0%, #f4f1ea 40%, #eef2ef 100%);
-  color: #1f2937;
+  background: radial-gradient(circle at top right, #fbf6ee 0%, #f6f1e8 45%, #e8dfd0 100%);
+  color: #223848;
 }
 
 h1,
@@ -26,8 +26,8 @@ select {
 }
 
 ::selection {
-  background: rgba(176, 138, 87, 0.25);
-  color: #1f2937;
+  background: rgba(194, 154, 102, 0.28);
+  color: #223848;
 }
 
 .hero-surface {
@@ -89,7 +89,7 @@ select {
 }
 
 .preloader-shell {
-  background: radial-gradient(circle at 50% 45%, #2a3140 0%, #141a24 42%, #0e131b 100%);
+  background: radial-gradient(circle at 50% 45%, #2b4252 0%, #1a2d3c 42%, #12222e 100%);
 }
 
 .preloader-grid-overlay {
@@ -102,7 +102,7 @@ select {
 }
 
 .preloader-core-glow {
-  background: radial-gradient(circle, rgba(176, 138, 87, 0.28) 0%, rgba(31, 90, 74, 0.2) 45%, transparent 72%);
+  background: radial-gradient(circle, rgba(194, 154, 102, 0.3) 0%, rgba(45, 106, 90, 0.22) 45%, transparent 72%);
   animation: preloaderGlow 2.4s ease-in-out infinite;
 }
 

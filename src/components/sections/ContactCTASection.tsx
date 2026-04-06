@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Input from "@/components/shared/Input";
-import MapPreview from "@/components/shared/MapPreview";
 import PrimaryButton from "@/components/shared/PrimaryButton";
 import SectionTitle from "@/components/shared/SectionTitle";
 import Select from "@/components/shared/Select";
@@ -22,9 +21,9 @@ export default function ContactCTASection() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [purpose, setPurpose] = useState("Buy");
-  const [propertyType, setPropertyType] = useState("Apartment");
-  const [budget, setBudget] = useState("EUR 150k - 300k");
+  const [purpose, setPurpose] = useState("Communal Property Management");
+  const [propertyType, setPropertyType] = useState("Apartment Building");
+  const [budget, setBudget] = useState("1-5 Properties");
   const [preferredContact, setPreferredContact] = useState("Phone");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
@@ -37,20 +36,20 @@ export default function ContactCTASection() {
     if (!/^\+?[0-9\s]{7,}$/.test(phone)) nextErrors.phone = "Enter a valid phone number.";
     if (!purpose) nextErrors.purpose = "Select inquiry purpose.";
     if (!propertyType) nextErrors.propertyType = "Select property type.";
-    if (!budget) nextErrors.budget = "Select budget range.";
+    if (!budget) nextErrors.budget = "Select portfolio size.";
     if (!preferredContact) nextErrors.preferredContact = "Select preferred contact method.";
     if (message.trim().length < 10) nextErrors.message = "Message must be at least 10 characters.";
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
-    setOk("Message sent successfully. We will contact you soon.");
+    setOk("Consultation request sent successfully. Our management team will contact you shortly.");
     setName("");
     setEmail("");
     setPhone("");
-    setPurpose("Buy");
-    setPropertyType("Apartment");
-    setBudget("EUR 150k - 300k");
+    setPurpose("Communal Property Management");
+    setPropertyType("Apartment Building");
+    setBudget("1-5 Properties");
     setPreferredContact("Phone");
     setMessage("");
   };
@@ -58,45 +57,58 @@ export default function ContactCTASection() {
   return (
     <section className="mt-20 mb-10">
       <SectionTitle
-        eyebrow="Contact"
-        title="Let Us Help You Move Forward"
-        subtitle="Share your requirements and our team will prepare a tailored property or service recommendation."
+        eyebrow="Management Consultation"
+        title="Build a Better Property Management Plan"
+        subtitle="Share your portfolio and service goals. We will prepare a tailored management proposal for your property operations."
       />
-      <div className="grid grid-cols-1 gap-6">
-        <div className="bg-white border border-slate-100 rounded-2xl p-5 md:p-6 shadow-card">
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#eef7f3] via-white to-[#eef4ff] p-5 md:p-6 mb-5 border border-slate-100 shadow-sm">
-            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent via-secondary to-[#229ED9]" />
+      <div className="grid grid-cols-1 gap-8">
+        <div className="relative overflow-hidden rounded-[28px] border border-accent/30 bg-gradient-to-br from-brandDeep via-brand to-secondary p-5 md:p-7 shadow-2xl">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(176,138,87,0.22),transparent_35%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(31,90,74,0.2),transparent_40%)]" />
+
+          <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-sm p-5 md:p-6 mb-5 border border-white/15 shadow-sm">
+            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent via-secondary to-brandSoft" />
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <div>
-                <p className="text-xs tracking-[0.18em] text-muted font-semibold">CONTACT INFORMATION</p>
-                <h3 className="text-brand text-xl font-semibold mt-1">Kaja Management LTD</h3>
+                <p className="text-xs tracking-[0.18em] text-white/70 font-semibold">CONTACT INFORMATION</p>
+                <h3 className="text-white text-xl font-semibold mt-1">Property Management Desk</h3>
               </div>
               <div className="flex items-center gap-2">
                 <a
-                  href="https://wa.me/35797790825"
+                  href="https://www.instagram.com/"
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-lg bg-[#25D366] text-white p-2 shadow-sm"
-                  aria-label="WhatsApp"
-                >
-                  <svg aria-hidden="true" viewBox="0 0 32 32" className="h-4 w-4 fill-current">
-                    <path d="M19.11 17.2c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.73.94-.9 1.13-.16.19-.33.22-.62.07-.29-.15-1.22-.45-2.33-1.43-.86-.76-1.44-1.7-1.61-1.99-.16-.29-.02-.45.12-.6.13-.13.29-.33.44-.49.15-.16.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.64-1.53-.88-2.09-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.49.07-.75.36-.26.29-.98.96-.98 2.35s1 2.74 1.14 2.93c.15.19 1.96 2.99 4.75 4.19.66.28 1.17.44 1.57.56.66.21 1.26.18 1.73.11.53-.08 1.7-.69 1.94-1.35.24-.66.24-1.22.17-1.34-.07-.12-.26-.19-.55-.34Z" />
-                    <path d="M16 .53C7.45.53.53 7.45.53 16c0 2.82.76 5.57 2.2 7.98L.5 31.47l7.71-2.16A15.4 15.4 0 0 0 16 31.47c8.55 0 15.47-6.92 15.47-15.47S24.55.53 16 .53Zm0 28.11c-2.35 0-4.66-.63-6.68-1.83l-.48-.28-4.58 1.28 1.22-4.46-.31-.51a12.57 12.57 0 0 1-1.93-6.84c0-6.96 5.67-12.63 12.63-12.63S28.5 9.04 28.5 16 22.96 28.64 16 28.64Z" />
-                  </svg>
-                </a>
-                <a
-                  href="tg://resolve?phone=35797790825"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center rounded-lg bg-[#229ED9] text-white p-2 shadow-sm"
-                  aria-label="Telegram"
+                  className="inline-flex items-center justify-center rounded-lg bg-accent text-white p-2 shadow-sm"
+                  aria-label="Instagram"
                 >
                   <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
-                    <path d="M9.78 15.17l-.4 5.61c.58 0 .84-.25 1.15-.55l2.75-2.63 5.7 4.18c1.04.58 1.78.28 2.06-.96l3.73-17.47h.01c.33-1.54-.56-2.14-1.58-1.76L1.43 9.42c-1.48.58-1.46 1.4-.25 1.77l5.57 1.74L19.68 5.1c.61-.4 1.17-.18.71.22" />
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.9 2.3a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
                   </svg>
                 </a>
                 <a
-                  href="mailto:jack_maher@gmail.com"
+                  href="https://www.facebook.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-lg bg-secondary text-white p-2 shadow-sm"
+                  aria-label="Facebook"
+                >
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                    <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.87.25-1.46 1.5-1.46H17V5c-.36-.05-1.2-.15-2.28-.15-2.26 0-3.82 1.38-3.82 3.91V11H8.5v3h2.4v8h2.6Z" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.linkedin.com/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center justify-center rounded-lg bg-brandSoft text-white p-2 shadow-sm"
+                  aria-label="LinkedIn"
+                >
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                    <path d="M6.94 8.5H3.56V20h3.38V8.5Zm.22-3.55A1.95 1.95 0 1 0 3.25 4.95a1.95 1.95 0 0 0 3.91 0ZM20.75 13.38c0-3.38-1.8-4.95-4.2-4.95-1.93 0-2.8 1.06-3.28 1.8V8.5H9.9V20h3.37v-6.05c0-1.6.3-3.15 2.28-3.15 1.95 0 1.98 1.82 1.98 3.25V20h3.22v-6.62Z" />
+                  </svg>
+                </a>
+                <a
+                  href="mailto:Info@kajamanagement.eu"
                   className="inline-flex items-center justify-center rounded-lg bg-slate-800 text-white p-2 shadow-sm"
                   aria-label="Email"
                 >
@@ -108,17 +120,17 @@ export default function ContactCTASection() {
             </div>
 
             <div className="mt-4 grid sm:grid-cols-3 gap-3">
-              <article className="group rounded-2xl bg-gradient-to-br from-emerald-50 to-white border border-emerald-100 p-4 shadow-sm hover:shadow-md transition">
+              <article className="group rounded-2xl bg-white/95 border border-emerald-200 p-4 shadow-sm hover:shadow-md transition">
                 <div className="flex items-center gap-2">
                   <div className="h-8 w-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm">
                     ☎
                   </div>
                   <p className="text-[11px] tracking-[0.16em] text-emerald-700/80 font-semibold">PHONE</p>
                 </div>
-                <p className="text-slate-900 font-semibold mt-2 group-hover:text-brand transition">+357 97 790825</p>
+                <p className="text-slate-900 font-semibold mt-2 group-hover:text-brand transition">+357 99961512</p>
               </article>
 
-              <article className="group rounded-2xl bg-gradient-to-br from-blue-50 to-white border border-blue-100 p-4 shadow-sm hover:shadow-md transition">
+              <article className="group rounded-2xl bg-white/95 border border-blue-200 p-4 shadow-sm hover:shadow-md transition">
                 <div className="flex items-center gap-2">
                   <div className="h-8 w-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-sm">
                     ✉
@@ -126,11 +138,11 @@ export default function ContactCTASection() {
                   <p className="text-[11px] tracking-[0.16em] text-blue-700/80 font-semibold">EMAIL</p>
                 </div>
                 <p className="text-slate-900 font-semibold mt-2 break-all group-hover:text-brand transition">
-                  jack_maher@gmail.com
+                  Info@kajamanagement.eu
                 </p>
               </article>
 
-              <article className="group rounded-2xl bg-gradient-to-br from-amber-50 to-white border border-amber-100 p-4 shadow-sm hover:shadow-md transition">
+              <article className="group rounded-2xl bg-white/95 border border-amber-200 p-4 shadow-sm hover:shadow-md transition">
                 <div className="flex items-center gap-2">
                   <div className="h-8 w-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-sm">
                     ⏰
@@ -142,66 +154,82 @@ export default function ContactCTASection() {
             </div>
           </div>
 
-          <Input label="Name" value={name} onChange={setName} error={errors.name} />
-          <Input label="Email" value={email} onChange={setEmail} error={errors.email} />
-          <Input label="Phone" value={phone} onChange={setPhone} error={errors.phone} />
-          <div className="grid md:grid-cols-2 gap-3">
-            <Select
-              label="Inquiry Purpose"
-              value={purpose}
-              onChange={setPurpose}
-              options={[
-                { label: "Buy", value: "Buy" },
-                { label: "Rent", value: "Rent" },
-                { label: "Sell", value: "Sell" },
-                { label: "Property Management", value: "Property Management" },
-                { label: "Cleaning & Turnovers", value: "Cleaning & Turnovers" }
-              ]}
+          <div className="rounded-2xl bg-white/95 border border-white/20 p-5 md:p-6">
+            <div className="mb-4">
+              <p className="text-[11px] tracking-[0.16em] text-muted font-semibold">CONSULTATION FORM</p>
+              <h4 className="text-slate-900 text-xl font-semibold mt-1">Request Your Management Proposal</h4>
+            </div>
+
+            <Input label="Full Name" value={name} onChange={setName} error={errors.name} placeholder="Your full name" />
+            <Input label="Business Email" value={email} onChange={setEmail} error={errors.email} placeholder="info@company.com" />
+            <Input label="Direct Phone" value={phone} onChange={setPhone} error={errors.phone} placeholder="+357 99961512" />
+            <div className="grid md:grid-cols-2 gap-3">
+              <Select
+                label="Service Package"
+                value={purpose}
+                onChange={setPurpose}
+                options={[
+                  { label: "Communal Property Management", value: "Communal Property Management" },
+                  { label: "Individual Property Management", value: "Individual Property Management" },
+                  { label: "Tenant Coordination & Leasing", value: "Tenant Coordination & Leasing" },
+                  { label: "Cleaning & Turnover Operations", value: "Cleaning & Turnover Operations" },
+                  { label: "Renovation Oversight", value: "Renovation Oversight" }
+                ]}
+              />
+              <Select
+                label="Property Type"
+                value={propertyType}
+                onChange={setPropertyType}
+                options={[
+                  { label: "Apartment Building", value: "Apartment Building" },
+                  { label: "Mixed-Use Building", value: "Mixed-Use Building" },
+                  { label: "Villa", value: "Villa" },
+                  { label: "Office", value: "Office" },
+                  { label: "Retail Unit", value: "Retail Unit" }
+                ]}
+              />
+            </div>
+            <div className="grid md:grid-cols-2 gap-3">
+              <Select
+                label="Portfolio Size"
+                value={budget}
+                onChange={setBudget}
+                options={[
+                  { label: "1-5 Properties", value: "1-5 Properties" },
+                  { label: "6-15 Properties", value: "6-15 Properties" },
+                  { label: "16-30 Properties", value: "16-30 Properties" },
+                  { label: "30+ Properties", value: "30+ Properties" }
+                ]}
+              />
+              <Select
+                label="Preferred Contact"
+                value={preferredContact}
+                onChange={setPreferredContact}
+                options={[
+                  { label: "Phone", value: "Phone" },
+                  { label: "WhatsApp", value: "WhatsApp" },
+                  { label: "Telegram", value: "Telegram" },
+                  { label: "Email", value: "Email" },
+                  { label: "Video Call", value: "Video Call" }
+                ]}
+              />
+            </div>
+            <Input
+              label="Operational Goals / Notes"
+              value={message}
+              onChange={setMessage}
+              multiline
+              error={errors.message}
+              placeholder="Tell us about your current setup, pain points, and what level of support you need."
             />
-            <Select
-              label="Property Type"
-              value={propertyType}
-              onChange={setPropertyType}
-              options={[
-                { label: "Apartment", value: "Apartment" },
-                { label: "Villa", value: "Villa" },
-                { label: "Office", value: "Office" },
-                { label: "Penthouse", value: "Penthouse" }
-              ]}
-            />
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              <p className="text-xs text-slate-500">Response time: usually within 24 hours.</p>
+              <PrimaryButton onClick={submit} className="w-auto min-h-[44px] px-5 py-2.5 text-sm rounded-lg shadow-sm">
+                Request Management Consultation
+              </PrimaryButton>
+            </div>
+            {ok ? <p className="text-emerald-700 text-sm mt-3">{ok}</p> : null}
           </div>
-          <div className="grid md:grid-cols-2 gap-3">
-            <Select
-              label="Budget Range"
-              value={budget}
-              onChange={setBudget}
-              options={[
-                { label: "EUR 150k - 300k", value: "EUR 150k - 300k" },
-                { label: "EUR 300k - 600k", value: "EUR 300k - 600k" },
-                { label: "EUR 600k - 1M", value: "EUR 600k - 1M" },
-                { label: "EUR 1M+", value: "EUR 1M+" }
-              ]}
-            />
-            <Select
-              label="Preferred Contact"
-              value={preferredContact}
-              onChange={setPreferredContact}
-              options={[
-                { label: "Phone", value: "Phone" },
-                { label: "WhatsApp", value: "WhatsApp" },
-                { label: "Telegram", value: "Telegram" },
-                { label: "Email", value: "Email" }
-              ]}
-            />
-          </div>
-          <Input label="Message" value={message} onChange={setMessage} multiline error={errors.message} />
-          <PrimaryButton onClick={submit} className="w-auto min-h-[42px] px-4 py-2.5 text-sm rounded-lg shadow-sm">
-            Send Inquiry
-          </PrimaryButton>
-          {ok ? <p className="text-emerald-700 text-sm mt-2">{ok}</p> : null}
-        </div>
-        <div>
-          <MapPreview />
         </div>
       </div>
     </section>

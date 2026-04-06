@@ -48,7 +48,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
           <div className="flex flex-wrap gap-3 mt-6">
             <RequestViewingButton propertyTitle={property.title} />
             <a
-              href="https://wa.me/35797790825"
+              href="https://wa.me/35799961512"
               target="_blank"
               className="rounded-xl px-5 py-3 min-h-12 font-semibold bg-white border border-slate-300 text-slate-900"
             >
@@ -81,7 +81,7 @@ export default async function PropertyDetailPage({ params }: { params: Promise<{
                     fill
                     className="object-cover transition duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0f172acc] via-[#0f172a80] to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand/90 via-brand/55 to-transparent" />
                   <div className="absolute top-4 left-4 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold text-slate-800">
                     {item.type}
                   </div>
