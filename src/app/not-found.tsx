@@ -19,10 +19,10 @@ export default function NotFoundPage() {
               Go to Home
             </Link>
             <Link
-              href="/properties"
+              href="/services"
               className="rounded-xl px-6 py-3 min-h-12 font-semibold bg-white text-brand border border-slate-300"
             >
-              Browse Properties
+              Browse Services
             </Link>
           </div>
         </div>

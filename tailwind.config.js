@@ -4,16 +4,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        brand: "#223848",
-        brandDeep: "#142734",
-        brandSoft: "#39586b",
-        accent: "#c29a66",
-        accentSoft: "#d8b58a",
-        secondary: "#2d6a5a",
-        secondarySoft: "#3f8571",
+        brand: "#4a3423",
+        brandDeep: "#2d1e14",
+        brandSoft: "#7a5a3f",
+        accent: "#d4af6a",
+        accentSoft: "#e4c98f",
+        secondary: "#8e6b45",
+        secondarySoft: "#b18a5b",
         muted: "#6b7280",
-        page: "#f6f1e8",
-        pageSoft: "#ece3d4"
+        page: "#f8f2e7",
+        pageSoft: "#efe4d2"
       },
       fontFamily: {
         body: ["var(--font-body)"],

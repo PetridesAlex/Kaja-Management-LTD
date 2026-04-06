@@ -1,13 +1,55 @@
-import Link from "next/link";
 import Image from "next/image";
 import PageContainer from "@/components/layout/PageContainer";
-import SectionTitle from "@/components/shared/SectionTitle";
 
 type PropertyManagementServicePageProps = {
   serviceLabel: string;
 };
 
 export default function PropertyManagementServicePage({ serviceLabel }: PropertyManagementServicePageProps) {
+  const pageMeta: Record<string, { focus: string; subtitle: string; bullets: string[] }> = {
+    "Communal Property Management": {
+      focus: "COMMUNAL OPERATIONS",
+      subtitle:
+        "This page is focused on communal building management, with additional modules for individual management and renovation support.",
+      bullets: [
+        "Current focus: Communal Property Management",
+        "Includes operational workflows and owner reporting",
+        "Also shows related individual and renovation modules"
+      ]
+    },
+    "Individual Property Management": {
+      focus: "INDIVIDUAL ASSET CARE",
+      subtitle:
+        "This page is focused on individual property management, with additional modules for communal operations and renovation support.",
+      bullets: [
+        "Current focus: Individual Property Management",
+        "Includes tenant, maintenance, and communication workflows",
+        "Also shows related communal and renovation modules"
+      ]
+    },
+    "Renovation Services": {
+      focus: "RENOVATION MANAGEMENT",
+      subtitle:
+        "This page is focused on renovation services, with additional modules for ongoing communal and individual management support.",
+      bullets: [
+        "Current focus: Renovation Services",
+        "Includes planning, execution, and quality delivery notes",
+        "Also shows related communal and individual modules"
+      ]
+    }
+  };
+
+  const meta = pageMeta[serviceLabel] ?? {
+    focus: "SERVICE OVERVIEW",
+    subtitle:
+      "This page includes structured management and renovation modules with clear responsibilities and delivery standards.",
+    bullets: [
+      `Current focus: ${serviceLabel}`,
+      "Includes management operations and service delivery workflows",
+      "Designed for clear owner communication and execution"
+    ]
+  };
+
   const individualServices = [
     "Coordination with partner agents for tenant placement",
     "Full rent collection and financial tracking",
@@ -42,13 +84,7 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
 
   return (
     <PageContainer>
-      <section className="mt-10">
-        <SectionTitle
-          eyebrow="Service Detail"
-          title={serviceLabel}
-          subtitle="Professional, transparent, and structured management solutions for individual properties, communal buildings, and renovation projects."
-        />
-
+      <section className="mt-8">
         <div className="space-y-10">
           <article className="relative overflow-hidden rounded-[30px] min-h-[340px] md:min-h-[430px]">
             <Image
@@ -70,6 +106,30 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
             </div>
           </article>
 
+          <div className="grid lg:grid-cols-12 gap-5 items-end">
+            <div className="lg:col-span-8">
+              <p className="text-accent text-xs tracking-[0.22em] font-semibold uppercase">Current Service</p>
+              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mt-3 leading-tight">{serviceLabel}</h2>
+              <p className="text-slate-700/95 mt-4 max-w-3xl text-base md:text-lg leading-8">
+                {meta.subtitle}
+              </p>
+              <p className="mt-4 inline-flex items-center rounded-full bg-accent/18 px-4 py-1.5 text-[11px] tracking-[0.16em] font-semibold text-brand uppercase">
+                {meta.focus}
+              </p>
+            </div>
+            <aside className="lg:col-span-4 rounded-2xl p-5">
+              <p className="text-[11px] tracking-[0.18em] text-muted font-semibold">PAGE OVERVIEW</p>
+              <ul className="mt-3 space-y-2 text-sm text-slate-700">
+                {meta.bullets.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </div>
+
           <article className="grid lg:grid-cols-2 gap-6 items-stretch">
             <div className="relative overflow-hidden rounded-3xl min-h-[300px]">
               <Image
@@ -84,7 +144,7 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
                 <p className="text-white text-lg font-semibold mt-2">End-to-end care for every private asset.</p>
               </div>
             </div>
-            <div className="rounded-3xl bg-white/90 p-6 md:p-8 shadow-card">
+            <div className="p-2 md:p-4">
               <p className="text-slate-700 leading-7">
                 At KAJA Management, successful property investment is not simply about occupancy. It is about
                 protecting your asset while delivering a high-quality living experience.
@@ -104,7 +164,7 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
           </article>
 
           <div className="grid xl:grid-cols-2 gap-6">
-            <article className="rounded-3xl bg-white/90 p-6 md:p-8 shadow-card">
+            <article className="p-2 md:p-4">
               <p className="text-xs tracking-[0.16em] text-muted font-semibold">OUR SERVICES</p>
               <ul className="mt-4 grid gap-2 text-slate-700">
                 {individualServices.map((item) => (
@@ -115,7 +175,7 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
                 ))}
               </ul>
             </article>
-            <article className="rounded-3xl bg-white/90 p-6 md:p-8 shadow-card">
+            <article className="p-2 md:p-4">
               <p className="text-xs tracking-[0.16em] text-muted font-semibold">ENHANCED EXPERIENCE & PROPERTY CARE</p>
               <ul className="mt-4 grid gap-2 text-slate-700">
                 {enhancedExperience.map((item) => (
@@ -129,7 +189,7 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
           </div>
 
           <article className="grid lg:grid-cols-2 gap-6 items-stretch">
-            <div className="rounded-3xl bg-white/90 p-6 md:p-8 shadow-card">
+            <div className="p-2 md:p-4">
               <p className="text-xs tracking-[0.16em] text-muted font-semibold">COMMUNAL PROPERTY MANAGEMENT</p>
               <p className="mt-4 text-slate-700 leading-7">
                 We provide structured communal management to keep shared spaces clean, safe, efficient, and financially
@@ -159,7 +219,7 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
             </div>
           </article>
 
-          <article className="grid lg:grid-cols-2 gap-6 items-stretch">
+          <article className="grid lg:grid-cols-2 gap-6 items-start pb-8 md:pb-12">
             <div className="relative overflow-hidden rounded-3xl min-h-[280px]">
               <Image src="/images/claning-services/rennovation.webp" alt="Renovation services" fill className="object-cover" />
               <div className="absolute inset-0 bg-gradient-to-r from-brand/85 via-brand/45 to-transparent" />
@@ -168,7 +228,8 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
                 <p className="text-white text-lg font-semibold mt-2">From upgrades to full-scope project delivery.</p>
               </div>
             </div>
-            <div className="rounded-3xl bg-white/90 p-6 md:p-8 shadow-card">
+            <div className="p-2 md:p-4">
+              <p className="text-xs tracking-[0.16em] text-muted font-semibold uppercase">Execution Standards</p>
               <p className="text-slate-700 leading-7">
                 We deliver renovation services for individual apartments and full residential blocks with a structured,
                 quality-focused process.
@@ -184,11 +245,6 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
             </div>
           </article>
 
-          <div className="flex flex-wrap gap-3">
-            <Link href="/contact" className="rounded-xl px-5 py-3 bg-brand text-white font-semibold shadow-sm hover:opacity-90 transition">
-              Request Consultation
-            </Link>
-          </div>
         </div>
       </section>
     </PageContainer>

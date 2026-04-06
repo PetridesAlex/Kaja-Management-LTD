@@ -4,8 +4,8 @@
 
 html,
 body {
-  background: radial-gradient(circle at top right, #fbf6ee 0%, #f6f1e8 45%, #e8dfd0 100%);
-  color: #223848;
+  background: radial-gradient(circle at top right, #fff9ef 0%, #f8f2e7 45%, #eadcc5 100%);
+  color: #4a3423;
 }
 
 h1,
@@ -27,7 +27,7 @@ select {
 
 ::selection {
   background: rgba(194, 154, 102, 0.28);
-  color: #223848;
+  color: #4a3423;
 }
 
 .hero-surface {
@@ -89,7 +89,7 @@ select {
 }
 
 .preloader-shell {
-  background: radial-gradient(circle at 50% 45%, #2b4252 0%, #1a2d3c 42%, #12222e 100%);
+  background: radial-gradient(circle at 50% 45%, #5d452f 0%, #3e2d1f 42%, #23180f 100%);
 }
 
 .preloader-grid-overlay {
@@ -102,7 +102,7 @@ select {
 }
 
 .preloader-core-glow {
-  background: radial-gradient(circle, rgba(194, 154, 102, 0.3) 0%, rgba(45, 106, 90, 0.22) 45%, transparent 72%);
+  background: radial-gradient(circle, rgba(212, 175, 106, 0.35) 0%, rgba(142, 107, 69, 0.24) 45%, transparent 72%);
   animation: preloaderGlow 2.4s ease-in-out infinite;
 }
 
@@ -225,7 +225,54 @@ select {
   }
 }
 
+/* Header: right-to-left service ticker (TV-style) */
+@keyframes headerTicker {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.header-ticker-track {
+  animation: headerTicker 55s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-ticker-track {
+    animation: none;
+    width: 100% !important;
+    max-width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    column-gap: 1.25rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .header-ticker-track > div[aria-hidden="true"] {
+    display: none;
+  }
+
+  .header-ticker-track > div:first-child {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 0.5rem;
+    column-gap: 1rem;
+    max-width: 100%;
+  }
+}
+
 /* Hide Next.js dev portal host from the rendered page surface */
 nextjs-portal {
   display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: fixed !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
 }

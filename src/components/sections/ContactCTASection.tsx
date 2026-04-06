@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "motion/react";
+import { Clock3, Mail, PhoneCall } from "lucide-react";
+import ScrollReveal from "@/components/animated/ScrollReveal";
 import Input from "@/components/shared/Input";
 import PrimaryButton from "@/components/shared/PrimaryButton";
 import SectionTitle from "@/components/shared/SectionTitle";
@@ -12,8 +15,6 @@ type FormErrors = {
   phone?: string;
   purpose?: string;
   propertyType?: string;
-  budget?: string;
-  preferredContact?: string;
   message?: string;
 };
 
@@ -23,8 +24,6 @@ export default function ContactCTASection() {
   const [phone, setPhone] = useState("");
   const [purpose, setPurpose] = useState("Communal Property Management");
   const [propertyType, setPropertyType] = useState("Apartment Building");
-  const [budget, setBudget] = useState("1-5 Properties");
-  const [preferredContact, setPreferredContact] = useState("Phone");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
   const [ok, setOk] = useState("");
@@ -36,8 +35,6 @@ export default function ContactCTASection() {
     if (!/^\+?[0-9\s]{7,}$/.test(phone)) nextErrors.phone = "Enter a valid phone number.";
     if (!purpose) nextErrors.purpose = "Select inquiry purpose.";
     if (!propertyType) nextErrors.propertyType = "Select property type.";
-    if (!budget) nextErrors.budget = "Select portfolio size.";
-    if (!preferredContact) nextErrors.preferredContact = "Select preferred contact method.";
     if (message.trim().length < 10) nextErrors.message = "Message must be at least 10 characters.";
 
     setErrors(nextErrors);
@@ -49,24 +46,23 @@ export default function ContactCTASection() {
     setPhone("");
     setPurpose("Communal Property Management");
     setPropertyType("Apartment Building");
-    setBudget("1-5 Properties");
-    setPreferredContact("Phone");
     setMessage("");
   };
 
   return (
-    <section className="mt-20 mb-10">
-      <SectionTitle
-        eyebrow="Management Consultation"
-        title="Build a Better Property Management Plan"
-        subtitle="Share your portfolio and service goals. We will prepare a tailored management proposal for your property operations."
-      />
-      <div className="grid grid-cols-1 gap-8">
-        <div className="relative overflow-hidden rounded-[28px] border border-accent/30 bg-gradient-to-br from-brandDeep via-brand to-secondary p-5 md:p-7 shadow-2xl">
+    <ScrollReveal>
+      <section className="mt-20 mb-10">
+        <SectionTitle
+          eyebrow="Management Consultation"
+          title="Build a Better Property Management Plan"
+          subtitle="Share your portfolio and service goals. We will prepare a tailored management proposal for your property operations."
+        />
+        <div className="grid grid-cols-1 gap-8">
+          <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-brandDeep via-brand to-secondary p-5 md:p-7 shadow-2xl">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(176,138,87,0.22),transparent_35%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(31,90,74,0.2),transparent_40%)]" />
 
-          <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-sm p-5 md:p-6 mb-5 border border-white/15 shadow-sm">
+          <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-sm p-5 md:p-6 mb-5 shadow-sm">
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent via-secondary to-brandSoft" />
             <div className="flex items-center justify-between gap-3 flex-wrap">
               <div>
@@ -120,118 +116,121 @@ export default function ContactCTASection() {
             </div>
 
             <div className="mt-4 grid sm:grid-cols-3 gap-3">
-              <article className="group rounded-2xl bg-white/95 border border-emerald-200 p-4 shadow-sm hover:shadow-md transition">
-                <div className="flex items-center gap-2">
-                  <div className="h-8 w-8 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-sm">
-                    ☎
-                  </div>
-                  <p className="text-[11px] tracking-[0.16em] text-emerald-700/80 font-semibold">PHONE</p>
+              <motion.a
+                href="tel:+35799961512"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.4, delay: 0.02 }}
+                className="group rounded-2xl bg-white/8 border border-white/20 p-4 backdrop-blur-sm hover:bg-white/12 transition"
+              >
+                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-accent to-secondary text-white flex items-center justify-center shadow-sm">
+                  <PhoneCall className="h-5 w-5" />
                 </div>
-                <p className="text-slate-900 font-semibold mt-2 group-hover:text-brand transition">+357 99961512</p>
-              </article>
+                <p className="text-[11px] tracking-[0.16em] text-white/75 font-semibold mt-3">CALL US</p>
+                <p className="text-white font-semibold mt-1 group-hover:text-accentSoft transition">+357 99961512</p>
+              </motion.a>
 
-              <article className="group rounded-2xl bg-white/95 border border-blue-200 p-4 shadow-sm hover:shadow-md transition">
-                <div className="flex items-center gap-2">
-                  <div className="h-8 w-8 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-sm">
-                    ✉
-                  </div>
-                  <p className="text-[11px] tracking-[0.16em] text-blue-700/80 font-semibold">EMAIL</p>
+              <motion.a
+                href="mailto:Info@kajamanagement.eu"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="group rounded-2xl bg-white/8 border border-white/20 p-4 backdrop-blur-sm hover:bg-white/12 transition"
+              >
+                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-brandSoft to-brand text-white flex items-center justify-center shadow-sm">
+                  <Mail className="h-5 w-5" />
                 </div>
-                <p className="text-slate-900 font-semibold mt-2 break-all group-hover:text-brand transition">
+                <p className="text-[11px] tracking-[0.16em] text-white/75 font-semibold mt-3">EMAIL US</p>
+                <p className="text-white font-semibold mt-1 break-all group-hover:text-accentSoft transition">
                   Info@kajamanagement.eu
                 </p>
-              </article>
+              </motion.a>
 
-              <article className="group rounded-2xl bg-white/95 border border-amber-200 p-4 shadow-sm hover:shadow-md transition">
-                <div className="flex items-center gap-2">
-                  <div className="h-8 w-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-sm">
-                    ⏰
-                  </div>
-                  <p className="text-[11px] tracking-[0.16em] text-amber-700/80 font-semibold">WORKING HOURS</p>
+              <motion.article
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.35 }}
+                transition={{ duration: 0.4, delay: 0.16 }}
+                className="group rounded-2xl bg-white/8 border border-white/20 p-4 backdrop-blur-sm hover:bg-white/12 transition"
+              >
+                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-secondary to-accent text-white flex items-center justify-center shadow-sm">
+                  <Clock3 className="h-5 w-5" />
                 </div>
-                <p className="text-slate-900 font-semibold mt-2 group-hover:text-brand transition">Mon-Sat: 08:00 - 19:00</p>
-              </article>
+                <p className="text-[11px] tracking-[0.16em] text-white/75 font-semibold mt-3">WORKING HOURS</p>
+                <p className="text-white font-semibold mt-1 group-hover:text-accentSoft transition">Mon-Sat: 08:00 - 19:00</p>
+              </motion.article>
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white/95 border border-white/20 p-5 md:p-6">
+          <div className="rounded-2xl bg-white/95 p-5 md:p-6">
             <div className="mb-4">
               <p className="text-[11px] tracking-[0.16em] text-muted font-semibold">CONSULTATION FORM</p>
-              <h4 className="text-slate-900 text-xl font-semibold mt-1">Request Your Management Proposal</h4>
+              <h4 className="text-slate-900 text-2xl font-semibold mt-1">Request Your Management Proposal</h4>
+              <p className="text-slate-600 text-sm mt-2">
+                Complete the form below and our team will contact you with a tailored service plan.
+              </p>
             </div>
 
-            <Input label="Full Name" value={name} onChange={setName} error={errors.name} placeholder="Your full name" />
-            <Input label="Business Email" value={email} onChange={setEmail} error={errors.email} placeholder="info@company.com" />
-            <Input label="Direct Phone" value={phone} onChange={setPhone} error={errors.phone} placeholder="+357 99961512" />
-            <div className="grid md:grid-cols-2 gap-3">
-              <Select
-                label="Service Package"
-                value={purpose}
-                onChange={setPurpose}
-                options={[
-                  { label: "Communal Property Management", value: "Communal Property Management" },
-                  { label: "Individual Property Management", value: "Individual Property Management" },
-                  { label: "Tenant Coordination & Leasing", value: "Tenant Coordination & Leasing" },
-                  { label: "Cleaning & Turnover Operations", value: "Cleaning & Turnover Operations" },
-                  { label: "Renovation Oversight", value: "Renovation Oversight" }
-                ]}
-              />
-              <Select
-                label="Property Type"
-                value={propertyType}
-                onChange={setPropertyType}
-                options={[
-                  { label: "Apartment Building", value: "Apartment Building" },
-                  { label: "Mixed-Use Building", value: "Mixed-Use Building" },
-                  { label: "Villa", value: "Villa" },
-                  { label: "Office", value: "Office" },
-                  { label: "Retail Unit", value: "Retail Unit" }
-                ]}
-              />
+            <div className="rounded-2xl border border-accent/25 bg-gradient-to-br from-white via-page/50 to-pageSoft/45 p-4 md:p-5">
+              <div className="grid md:grid-cols-2 gap-x-4 gap-y-1">
+                <Input label="Full Name" value={name} onChange={setName} error={errors.name} placeholder="Your full name" />
+                <Input label="Business Email" value={email} onChange={setEmail} error={errors.email} placeholder="info@company.com" />
+                <Input label="Direct Phone" value={phone} onChange={setPhone} error={errors.phone} placeholder="+357 99961512" />
+                <div className="hidden md:block" />
+                <Select
+                  label="Service Package"
+                  value={purpose}
+                  onChange={setPurpose}
+                  options={[
+                    { label: "Communal Property Management", value: "Communal Property Management" },
+                    { label: "Individual Property Management", value: "Individual Property Management" },
+                    { label: "Tenant Coordination & Leasing", value: "Tenant Coordination & Leasing" },
+                    { label: "Cleaning & Turnover Operations", value: "Cleaning & Turnover Operations" },
+                    { label: "Renovation Oversight", value: "Renovation Oversight" }
+                  ]}
+                />
+                <Select
+                  label="Property Type"
+                  value={propertyType}
+                  onChange={setPropertyType}
+                  options={[
+                    { label: "Apartment Building", value: "Apartment Building" },
+                    { label: "Mixed-Use Building", value: "Mixed-Use Building" },
+                    { label: "Villa", value: "Villa" },
+                    { label: "Office", value: "Office" },
+                    { label: "Retail Unit", value: "Retail Unit" }
+                  ]}
+                />
+              </div>
+
+              <div className="mt-2">
+                <Input
+                  label="Notes"
+                  value={message}
+                  onChange={setMessage}
+                  multiline
+                  error={errors.message}
+                  placeholder="Tell us briefly what support you need."
+                />
+              </div>
             </div>
-            <div className="grid md:grid-cols-2 gap-3">
-              <Select
-                label="Portfolio Size"
-                value={budget}
-                onChange={setBudget}
-                options={[
-                  { label: "1-5 Properties", value: "1-5 Properties" },
-                  { label: "6-15 Properties", value: "6-15 Properties" },
-                  { label: "16-30 Properties", value: "16-30 Properties" },
-                  { label: "30+ Properties", value: "30+ Properties" }
-                ]}
-              />
-              <Select
-                label="Preferred Contact"
-                value={preferredContact}
-                onChange={setPreferredContact}
-                options={[
-                  { label: "Phone", value: "Phone" },
-                  { label: "WhatsApp", value: "WhatsApp" },
-                  { label: "Telegram", value: "Telegram" },
-                  { label: "Email", value: "Email" },
-                  { label: "Video Call", value: "Video Call" }
-                ]}
-              />
-            </div>
-            <Input
-              label="Operational Goals / Notes"
-              value={message}
-              onChange={setMessage}
-              multiline
-              error={errors.message}
-              placeholder="Tell us about your current setup, pain points, and what level of support you need."
-            />
-            <div className="flex items-center justify-between gap-3 flex-wrap">
-              <p className="text-xs text-slate-500">Response time: usually within 24 hours.</p>
-              <PrimaryButton onClick={submit} className="w-auto min-h-[44px] px-5 py-2.5 text-sm rounded-lg shadow-sm">
+
+            <div className="mt-4 rounded-xl bg-brand/5 border border-accent/20 px-4 py-3 flex items-center justify-between gap-3 flex-wrap">
+              <p className="text-xs text-slate-600">Response time: usually within 24 hours.</p>
+              <PrimaryButton
+                onClick={submit}
+                className="w-auto min-h-[44px] px-5 py-2.5 text-sm rounded-lg shadow-sm bg-gradient-to-r from-brand to-secondary hover:opacity-95"
+              >
                 Request Management Consultation
               </PrimaryButton>
             </div>
-            {ok ? <p className="text-emerald-700 text-sm mt-3">{ok}</p> : null}
+            {ok ? <p className="text-brand text-sm mt-3">{ok}</p> : null}
+          </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </ScrollReveal>
   );
 }

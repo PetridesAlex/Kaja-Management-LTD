@@ -4,10 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import HeaderServicesTicker from "@/components/layout/HeaderServicesTicker";
 
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
+  { href: "/services/cleaning", label: "Green Clean" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" }
 ];
@@ -23,6 +25,7 @@ export default function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const servicesMenuRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -51,7 +54,7 @@ export default function SiteHeader() {
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-2 ml-auto rounded-2xl border border-white/15 bg-white/10 px-2 py-1">
+        <nav className="hidden md:flex items-center gap-2 ml-auto rounded-2xl border border-accent/30 bg-white/10 px-2 py-1.5 shadow-[0_8px_24px_rgba(0,0,0,0.18)]">
           {navLinks.map((item) => {
             if (item.label === "Services") {
               const active = pathname.startsWith("/services");
@@ -66,10 +69,10 @@ export default function SiteHeader() {
                   <button
                     type="button"
                     onClick={() => setServicesOpen((value) => !value)}
-                    className={`text-sm transition px-3 py-2 rounded-xl inline-flex items-center gap-2 ${
+                    className={`text-[13px] tracking-[0.08em] uppercase transition px-3.5 py-2 rounded-xl inline-flex items-center gap-2 font-display ${
                       active
-                        ? "bg-gradient-to-r from-secondary to-accent text-white font-semibold"
-                        : "text-slate-100 hover:text-white hover:bg-white/10"
+                        ? "bg-gradient-to-r from-accent to-secondary text-white font-semibold shadow-[0_8px_20px_rgba(212,175,106,0.28)]"
+                        : "text-white/95 font-semibold hover:text-white hover:bg-white/15"
                     }`}
                     aria-expanded={servicesOpen}
                     aria-haspopup="menu"
@@ -80,12 +83,12 @@ export default function SiteHeader() {
 
                   {servicesOpen ? (
                     <div className="absolute right-0 top-full pt-2 z-50">
-                      <div className="w-[300px] rounded-2xl border border-accent/25 bg-page/95 backdrop-blur p-2 shadow-xl">
+                      <div className="w-[320px] rounded-2xl border border-accent/35 bg-page/95 backdrop-blur p-2.5 shadow-xl">
                         {serviceLinks.map((service) => (
                           <Link
                             key={service.href}
                             href={service.href}
-                            className="block rounded-xl px-3 py-2.5 text-sm text-brand hover:bg-pageSoft/80 hover:text-secondary transition"
+                            className="block rounded-xl px-3.5 py-2.5 text-[13px] tracking-[0.04em] font-medium text-brand hover:bg-pageSoft/90 hover:text-secondary transition"
                             onClick={() => setServicesOpen(false)}
                           >
                             {service.label}
@@ -103,10 +106,10 @@ export default function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-sm transition px-3 py-2 rounded-xl ${
+                className={`text-[13px] tracking-[0.08em] uppercase transition px-3.5 py-2 rounded-xl font-display ${
                   active
-                    ? "bg-gradient-to-r from-secondary to-accent text-white font-semibold"
-                    : "text-slate-100 hover:text-white hover:bg-white/10"
+                    ? "bg-gradient-to-r from-accent to-secondary text-white font-semibold shadow-[0_8px_20px_rgba(212,175,106,0.28)]"
+                    : "text-white/95 font-semibold hover:text-white hover:bg-white/15"
                 }`}
               >
                 {item.label}
@@ -192,26 +195,49 @@ export default function SiteHeader() {
         </button>
       </div>
 
+      <HeaderServicesTicker />
+
       {open ? (
         <div className="md:hidden border-t border-accent/25 bg-brandDeep shadow-inner">
           <div className="w-full px-4 py-5 grid gap-2">
-            <div className="rounded-xl px-4 py-3 bg-white/10 border border-accent/30">
-              <p className="text-[11px] tracking-[0.16em] text-white/75 font-semibold mb-2">SERVICES</p>
-              <div className="grid gap-1">
-                {serviceLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="rounded-lg px-3 py-2 text-sm text-slate-100 hover:bg-white/15 hover:text-white transition"
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-
             {navLinks.map((item) => {
+              if (item.label === "Services") {
+                const active = pathname.startsWith("/services");
+                return (
+                  <div key={item.href} className="rounded-xl bg-white/10 text-slate-100">
+                    <button
+                      type="button"
+                      onClick={() => setMobileServicesOpen((value) => !value)}
+                      className={`w-full px-4 py-3 text-left text-base font-medium transition rounded-xl inline-flex items-center justify-between ${
+                        active ? "bg-gradient-to-r from-accent to-secondary text-white shadow-sm" : "hover:bg-white/15 hover:text-white"
+                      }`}
+                      aria-expanded={mobileServicesOpen}
+                      aria-controls="mobile-services-list"
+                    >
+                      Services
+                      <span className={`text-xs transition-transform ${mobileServicesOpen ? "rotate-180" : ""}`}>▼</span>
+                    </button>
+                    {mobileServicesOpen ? (
+                      <div id="mobile-services-list" className="px-2 pb-2 grid gap-1">
+                        {serviceLinks.map((service) => (
+                          <Link
+                            key={service.href}
+                            href={service.href}
+                            className="rounded-lg px-3 py-2 text-sm text-slate-100 hover:bg-white/15 hover:text-white transition"
+                            onClick={() => {
+                              setOpen(false);
+                              setMobileServicesOpen(false);
+                            }}
+                          >
+                            {service.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                );
+              }
+
               const active = pathname === item.href;
               return (
                 <Link

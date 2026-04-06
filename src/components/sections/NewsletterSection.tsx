@@ -30,7 +30,7 @@ export default function NewsletterSection() {
       />
       <Input label="Email" value={email} onChange={setEmail} error={error} placeholder="you@example.com" />
       <PrimaryButton onClick={subscribe}>Subscribe</PrimaryButton>
-      {ok ? <p className="text-emerald-700 text-sm mt-2">{ok}</p> : null}
+      {ok ? <p className="text-brand text-sm mt-2">{ok}</p> : null}
     </section>
   );
 }

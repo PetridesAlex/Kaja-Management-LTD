@@ -82,6 +82,13 @@ const steps = [
   "You receive photos and invoice (optional key-safe access)."
 ];
 
+const serviceLinks: Record<string, string> = {
+  s1: "/services/communal-property-management",
+  s2: "/services/individual-property-management",
+  s3: "/services/cleaning",
+  s4: "/services/renovation"
+};
+
 export default function ServicesPage() {
   return (
     <PageContainer>
@@ -107,8 +114,8 @@ export default function ServicesPage() {
               <Link href="/contact" className="rounded-xl px-6 py-3 bg-accent text-white font-semibold min-h-12">
                 Request a Service Plan
               </Link>
-              <Link href="/properties" className="rounded-xl px-6 py-3 bg-white/20 text-white font-semibold min-h-12">
-                Explore Properties
+              <Link href="/services#communal-property-management" className="rounded-xl px-6 py-3 bg-white/20 text-white font-semibold min-h-12">
+                Explore Services
               </Link>
             </div>
           </div>
@@ -136,10 +143,18 @@ export default function ServicesPage() {
             >
               <div className="flex items-center justify-between">
                 <div className="h-11 w-11 rounded-xl bg-brand/10 flex items-center justify-center text-2xl">{service.icon}</div>
-                <p className="text-xs tracking-[0.2em] text-muted">0{index + 1}</p>
+                <p className="text-[11px] tracking-[0.24em] text-brand/55 font-semibold uppercase">Service 0{index + 1}</p>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mt-4">{service.title}</h3>
-              <p className="text-slate-600 mt-2 leading-6">{service.description}</p>
+              <h3 className="mt-3 font-display text-[clamp(1.15rem,2vw,1.45rem)] font-semibold text-brandDeep leading-tight tracking-[-0.005em]">
+                {service.title}
+              </h3>
+              <p className="text-slate-700/90 mt-2.5 leading-7 text-[15px]">{service.description}</p>
+              <Link
+                href={serviceLinks[service.id] ?? "/services"}
+                className="inline-flex mt-3 items-center gap-1.5 rounded-full border border-accent/35 bg-white px-3.5 py-1.5 text-[12px] font-semibold tracking-[0.08em] uppercase text-brand hover:bg-gradient-to-r hover:from-accent/15 hover:to-secondary/15 hover:border-accent/60 hover:text-brandDeep transition"
+              >
+                View now →
+              </Link>
             </article>
           ))}
         </div>

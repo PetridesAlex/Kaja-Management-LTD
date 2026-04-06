@@ -10,10 +10,12 @@ type Props = {
 export default function Input({ label, value, onChange, placeholder, error, multiline }: Props) {
   return (
     <div className="mb-4">
-      <label className="block text-slate-700 mb-1 text-sm">{label}</label>
+      <label className="block text-brand mb-1.5 text-[11px] tracking-[0.14em] uppercase font-semibold font-display">
+        {label}
+      </label>
       {multiline ? (
         <textarea
-          className={`w-full border rounded-xl px-3 py-3 bg-white min-h-[120px] ${
+          className={`w-full border rounded-xl px-3 py-3 bg-white min-h-[120px] text-slate-800 placeholder:text-slate-400 ${
             error ? "border-red-500" : "border-slate-300"
           }`}
           value={value}
@@ -23,7 +25,9 @@ export default function Input({ label, value, onChange, placeholder, error, mult
         />
       ) : (
         <input
-          className={`w-full border rounded-xl px-3 py-3 bg-white min-h-12 ${error ? "border-red-500" : "border-slate-300"}`}
+          className={`w-full border rounded-xl px-3 py-3 bg-white min-h-12 text-slate-800 placeholder:text-slate-400 ${
+            error ? "border-red-500" : "border-slate-300"
+          }`}
           value={value}
           placeholder={placeholder}
           onChange={(e) => onChange(e.target.value)}

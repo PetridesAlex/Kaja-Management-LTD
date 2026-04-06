@@ -1,54 +1,64 @@
 import Image from "next/image";
+import Link from "next/link";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { services } from "@/data/services";
+import ScrollReveal from "@/components/animated/ScrollReveal";
 
 const serviceImages: Record<string, string> = {
   s1: "/images/claning-services/building-management.webp",
-  s2: "/images/claning-services/cleaning-maintenance.webp",
-  s3: "/images/claning-services/rennovation.webp",
-  s4: "/images/claning-services/all-day-support.webp"
+  s2: "/images/claning-services/all-day-support.webp",
+  s3: "/images/claning-services/cleaning-maintenance.webp",
+  s4: "/images/claning-services/rennovation.webp"
+};
+
+const serviceLinks: Record<string, string> = {
+  s1: "/services/communal-property-management",
+  s2: "/services/individual-property-management",
+  s3: "/services/cleaning",
+  s4: "/services/renovation"
 };
 
 export default function ServicesSection() {
   return (
-    <section className="mt-20">
-      <SectionTitle
-        eyebrow="What We Do"
-        title="Property Services"
-        subtitle="Integrated support for owners and investors, from operations to long-term value optimization."
-      />
+    <ScrollReveal>
+      <section className="mt-20">
+        <SectionTitle
+          eyebrow="What We Do"
+          title="Property Services"
+          subtitle="Integrated support for owners and investors, from operations to long-term value optimization."
+        />
 
-      <div className="rounded-3xl bg-white/75 p-4 md:p-6 shadow-card">
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
-          {services.map((service, index) => (
-            <article
-              key={service.id}
-              className="rounded-2xl bg-white overflow-hidden border border-slate-100 shadow-sm hover:shadow-card transition duration-300 hover:-translate-y-1"
-            >
-              <div className="relative h-40">
-                <Image
-                  src={serviceImages[service.id]}
-                  alt={service.title}
-                  fill
-                  className="object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
-                <div className="absolute left-4 bottom-4 h-10 w-10 rounded-xl bg-white/90 text-brand flex items-center justify-center text-xl shadow-sm">
-                  {service.icon}
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+            {services.map((service, index) => (
+              <article key={service.id} className="transition duration-300 hover:-translate-y-1">
+                <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
+                  <Image
+                    src={serviceImages[service.id]}
+                    alt={service.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-              </div>
 
-              <div className="p-5">
-                <div className="flex items-center justify-between">
-                <span className="text-xs tracking-[0.2em] text-muted">0{index + 1}</span>
+              <div className="pt-4">
+                  <div className="flex items-center justify-between">
+                  <span className="text-[11px] tracking-[0.24em] text-brand/55 font-semibold uppercase">Service 0{index + 1}</span>
+                  </div>
+                <h3 className="mt-2 font-display text-[clamp(1.15rem,2vw,1.45rem)] font-semibold text-brandDeep leading-tight tracking-[-0.005em]">
+                  {service.title}
+                </h3>
+                <p className="text-slate-700/90 mt-2.5 leading-7 text-[15px]">{service.description}</p>
+                <Link
+                  href={serviceLinks[service.id] ?? "/services"}
+                  className="inline-flex mt-3 items-center gap-1.5 rounded-full border border-accent/35 bg-white px-3.5 py-1.5 text-[12px] font-semibold tracking-[0.08em] uppercase text-brand hover:bg-gradient-to-r hover:from-accent/15 hover:to-secondary/15 hover:border-accent/60 hover:text-brandDeep transition"
+                >
+                  View now →
+                </Link>
                 </div>
-                <h3 className="text-lg font-semibold text-slate-900 mt-3">{service.title}</h3>
-                <p className="text-slate-600 mt-2 leading-6 text-sm">{service.description}</p>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
         </div>
-      </div>
-    </section>
+      </section>
+    </ScrollReveal>
   );
 }

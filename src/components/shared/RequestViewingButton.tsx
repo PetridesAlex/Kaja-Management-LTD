@@ -106,9 +106,9 @@ export default function RequestViewingButton({ propertyTitle }: RequestViewingBu
             </div>
 
             {submitted ? (
-              <div className="mt-5 rounded-xl bg-emerald-50 border border-emerald-200 p-4">
-                <p className="text-emerald-800 font-semibold">Viewing request sent successfully.</p>
-                <p className="text-emerald-700 text-sm mt-1">Our team will contact you shortly to confirm your appointment.</p>
+              <div className="mt-5 rounded-xl bg-accent/15 border border-accent/40 p-4">
+                <p className="text-brand font-semibold">Viewing request sent successfully.</p>
+                <p className="text-brand/80 text-sm mt-1">Our team will contact you shortly to confirm your appointment.</p>
               </div>
             ) : (
               <form className="mt-5 space-y-3" onSubmit={handleSubmit}>

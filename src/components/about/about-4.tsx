@@ -3,27 +3,36 @@
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
+import ScrollReveal from "@/components/animated/ScrollReveal";
 
 const slides = [
   {
     title: "Innovation",
     subtitle: "Building the future",
-    description: "We apply modern operations, responsive communication, and smart workflows to elevate property performance."
+    description: "We apply modern operations, responsive communication, and smart workflows to elevate property performance.",
+    image: "/images/claning-services/proffesional-property-services.webp",
+    imageAlt: "Professional property management operations"
   },
   {
     title: "Speed",
     subtitle: "Fast, reliable execution",
-    description: "From resident requests to owner updates, our systems are designed for quick turnaround and consistent delivery."
+    description: "From resident requests to owner updates, our systems are designed for quick turnaround and consistent delivery.",
+    image: "/images/claning-services/all-day-support.webp",
+    imageAlt: "All-day support and fast service delivery"
   },
   {
     title: "Transparency",
     subtitle: "Clear visibility always",
-    description: "Owners receive structured reporting, financial clarity, and proactive updates for confident decision-making."
+    description: "Owners receive structured reporting, financial clarity, and proactive updates for confident decision-making.",
+    image: "/images/claning-services/building-management.webp",
+    imageAlt: "Structured building management and reporting"
   },
   {
     title: "Impact",
     subtitle: "Long-term asset value",
-    description: "We focus on retention, care standards, and operational quality that compound value over time."
+    description: "We focus on retention, care standards, and operational quality that compound value over time.",
+    image: "/images/claning-services/rennovation.webp",
+    imageAlt: "Renovation services improving long-term value"
   }
 ];
 
@@ -107,8 +116,8 @@ export default function About4() {
               className="absolute inset-0"
             >
               <Image
-                src="/images/highrise-apartment-buildings-downtown.webp"
-                alt="Premium city property skyline"
+                src={current.image}
+                alt={current.imageAlt}
                 fill
                 className="object-cover"
               />
@@ -150,6 +159,64 @@ export default function About4() {
               </motion.div>
             </AnimatePresence>
           </article>
+        </div>
+
+        <div className="mt-10 md:mt-12 grid lg:grid-cols-12 gap-6">
+          <ScrollReveal className="lg:col-span-7" delay={0.04}>
+            <article className="rounded-3xl bg-white/96 border border-accent/20 p-6 md:p-8 shadow-card">
+            <p className="text-[11px] tracking-[0.2em] text-accent font-semibold uppercase">About Us</p>
+            <h3 className="text-3xl md:text-4xl font-bold text-slate-900 mt-3 leading-tight">
+              Built to simplify property ownership in Cyprus
+            </h3>
+            <p className="mt-5 text-slate-700 leading-8">
+              Established in 2019, KAJA Management was built with a clear purpose - to simplify property ownership in
+              Cyprus while delivering exceptional service standards.
+            </p>
+            <p className="mt-4 text-slate-700 leading-8">
+              We focus on creating a seamless experience for both property owners and tenants across Cyprus, combining
+              professional management with a detail-oriented and reliable approach.
+            </p>
+            <p className="mt-4 text-slate-700 leading-8">
+              Our service is personalized, ensuring every property is managed with care, consistency, and a strong
+              focus on long-term value within the Cyprus real estate market.
+            </p>
+            </article>
+          </ScrollReveal>
+
+          <ScrollReveal className="lg:col-span-5" delay={0.12}>
+            <article className="rounded-3xl bg-gradient-to-br from-brandDeep via-brand to-secondary text-white p-6 md:p-8 shadow-card">
+            <p className="text-[11px] tracking-[0.2em] text-white/75 font-semibold uppercase">Our Vision</p>
+            <p className="mt-3 text-white/95 leading-8">
+              To become a well-established and leading presence within the Cyprus market, recognized for reliability,
+              professionalism, and consistently high standards.
+            </p>
+
+            <p className="text-[11px] tracking-[0.2em] text-white/75 font-semibold uppercase mt-7">Our Mission</p>
+            <p className="mt-3 text-white/95 leading-8">
+              Our mission is to provide a fully hands-free experience for property owners across Cyprus while
+              maintaining the highest standards across every service we offer.
+            </p>
+
+            <ul className="mt-5 space-y-2 text-white/95 text-sm leading-6">
+              <li className="flex items-start gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                Delivering consistent, high-quality service across Cyprus
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                Building long-term relationships with clients
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                Maintaining properties to the highest standard
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                Ensuring smooth, stress-free management at all times
+              </li>
+            </ul>
+            </article>
+          </ScrollReveal>
         </div>
       </div>
     </section>
