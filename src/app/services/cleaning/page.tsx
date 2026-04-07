@@ -1,65 +1,140 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Check, Sparkles } from "lucide-react";
 import PageContainer from "@/components/layout/PageContainer";
 import CleaningWhatsAppFloating, { CLEANING_WHATSAPP_HREF } from "@/components/services/CleaningWhatsAppCTA";
+
+const cleaningServiceItems = [
+  "Deep cleaning",
+  "Standard / regular cleaning",
+  "End of tenancy & move-in / move-out cleaning",
+  "Airbnb cleaning",
+  "Office and commercial cleaning",
+  "Window cleaning",
+  "Kitchen, oven & appliance cleaning",
+  "Bathroom, tile & grout cleaning",
+  "Sofa, mattress & carpet cleaning",
+  "Eco-friendly cleaning options"
+] as const;
 
 export default function CleaningServicePage() {
   return (
     <PageContainer>
       <section className="mt-8 space-y-8 mb-12 md:mb-16">
-        <article className="relative overflow-hidden rounded-[30px] min-h-[300px] md:min-h-[380px] shadow-2xl">
+        <article className="relative overflow-hidden rounded-[30px] min-h-[280px] md:min-h-[400px] shadow-2xl bg-gradient-to-br from-pageSoft via-page to-brandDeep/[0.12] ring-1 ring-black/5">
           <Image
             src="/images/claning-services/premium-cleaning-services.webp"
             alt="Premium cleaning services for residential and commercial properties"
             fill
             priority
-            className="object-cover object-center"
+            className="object-contain object-center p-3 sm:p-5 md:p-6"
             sizes="(max-width: 1400px) 100vw, 1400px"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-brandDeep/82 via-brand/58 to-secondary/48" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(212,175,106,0.22),transparent_42%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_0%,rgba(45,30,20,0.35)_100%)]" />
-          <div className="relative z-10 h-full min-h-[300px] md:min-h-[380px] px-6 md:px-10 py-8 md:py-10 flex flex-col justify-start">
-            <div className="max-w-4xl p-1 md:p-2">
-              <p className="text-xs tracking-[0.22em] text-white/90 font-semibold uppercase">KAJA Green Clean</p>
-              <h1 className="text-white text-4xl md:text-6xl font-bold mt-3 leading-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.35)]">
-                Premium Cleaning Services
-              </h1>
-              <p className="text-white/95 mt-4 text-base md:text-lg leading-8">
-                High-quality, detail-focused cleaning solutions for residential and commercial properties.
-              </p>
-            </div>
-          </div>
+          <div
+            className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_40%,rgba(45,30,20,0.06)_100%)]"
+            aria-hidden
+          />
         </article>
+
+        <header className="rounded-[28px] border border-accent/15 bg-gradient-to-br from-white via-page to-pageSoft/95 px-6 py-8 shadow-[0_20px_56px_rgba(45,30,20,0.07)] ring-1 ring-white/90 md:px-10 md:py-10">
+          <p className="text-xs tracking-[0.22em] text-accent font-semibold uppercase">KAJA Green Clean</p>
+          <h1 className="mt-3 font-display text-[clamp(2rem,4.8vw,3.8rem)] font-bold leading-[1.08] tracking-[-0.01em] bg-gradient-to-r from-brandDeep via-brand to-secondary bg-clip-text text-transparent">
+            Premium Cleaning Services
+          </h1>
+          <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-slate-700 md:text-lg">
+            High-quality, detail-focused cleaning solutions for residential and commercial properties.
+          </p>
+        </header>
 
         <div className="grid lg:grid-cols-12 gap-6 items-start">
           <article className="lg:col-span-8 p-1 md:p-2">
-            <p className="text-xs tracking-[0.2em] text-accent font-semibold uppercase">Cleaning Excellence</p>
+            <p className="text-xs tracking-[0.22em] text-accent font-semibold uppercase">Cleaning Excellence</p>
             <h2 className="mt-3 font-display text-[clamp(2rem,4.8vw,3.8rem)] font-bold leading-[1.08] tracking-[-0.01em] bg-gradient-to-r from-brandDeep via-brand to-secondary bg-clip-text text-transparent">
               Why Clients Choose KAJA Green Clean
             </h2>
 
-            <p className="mt-5 text-slate-700 leading-8">
-              At KAJA Green Clean, we provide high-quality, professional cleaning services tailored to both residential and
-              commercial properties.
-            </p>
-            <p className="mt-4 text-slate-700 leading-8">
-              Our focus is simple - deliver exceptional results, attention to detail, and a reliable service you can trust every time.
-            </p>
-            <p className="mt-4 text-slate-700 leading-8">
-              Whether it is a one-time deep clean or ongoing maintenance, we ensure every space is left spotless, fresh, and
-              maintained to the highest standard.
-            </p>
+            <div className="mt-8 rounded-[28px] border border-accent/15 bg-gradient-to-br from-white via-page to-pageSoft/90 p-6 md:p-8 shadow-[0_12px_48px_rgba(45,30,20,0.07)] ring-1 ring-white/80">
+              <div className="space-y-5 text-[17px] leading-[1.75] text-slate-700/95 md:text-lg">
+                <p>
+                  At KAJA Green Clean, we provide high-quality, professional cleaning services tailored to both residential
+                  and commercial properties.
+                </p>
+                <p className="text-slate-800">
+                  Our focus is simple — deliver exceptional results, attention to detail, and a reliable service you can
+                  trust every time.
+                </p>
+                <p>
+                  Whether it&apos;s a one-time deep clean or ongoing maintenance, we ensure every space is left spotless,
+                  fresh, and maintained to the highest standard.
+                </p>
+              </div>
+            </div>
 
-            <div className="mt-7 max-w-[520px]">
-              <div className="relative overflow-hidden rounded-2xl h-[220px] md:h-[260px]">
+            <div className="mt-8 flex w-full justify-center">
+              <div className="relative h-[220px] w-full max-w-[560px] md:h-[260px]">
                 <Image
                   src="/images/claning-services/green-kaja.webp"
                   alt="KAJA Green Clean professional cleaning service"
                   fill
                   className="object-contain object-center"
+                  sizes="(max-width: 768px) 100vw, 560px"
                 />
               </div>
+            </div>
+
+            <div className="mt-10 flex items-center gap-4" role="presentation">
+              <span className="h-px flex-1 bg-gradient-to-r from-transparent via-accent/45 to-transparent" aria-hidden />
+              <span className="select-none text-lg leading-none text-accent/80" aria-hidden>
+                ⸻
+              </span>
+              <span className="h-px flex-1 bg-gradient-to-l from-transparent via-accent/45 to-transparent" aria-hidden />
+            </div>
+
+            <div className="mt-10">
+              <div className="flex flex-wrap items-baseline gap-3">
+                <h3 className="font-display text-xl font-semibold tracking-wide text-brandDeep md:text-2xl">Our Services</h3>
+                <span className="hidden sm:inline-block h-1 w-12 rounded-full bg-gradient-to-r from-accent to-secondary opacity-80" aria-hidden />
+              </div>
+
+              <ul className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-3.5">
+                {cleaningServiceItems.map((item) => (
+                  <li
+                    key={item}
+                    className="group flex gap-3 rounded-2xl border border-slate-200/90 bg-white/60 px-4 py-3.5 shadow-[0_8px_24px_rgba(45,30,20,0.04)] transition hover:border-accent/25 hover:bg-white hover:shadow-[0_12px_32px_rgba(45,30,20,0.08)]"
+                  >
+                    <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-accent/25 to-secondary/15 text-brandDeep ring-1 ring-accent/20">
+                      <Check className="h-4 w-4 stroke-[2.5]" aria-hidden />
+                    </span>
+                    <span className="text-[15px] font-medium leading-snug text-slate-800">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <aside className="relative mt-10 overflow-hidden rounded-3xl border border-accent/12 bg-gradient-to-br from-white via-page to-pageSoft/90 px-6 py-7 shadow-[0_28px_72px_rgba(45,30,20,0.09)] ring-1 ring-white/95 md:px-9 md:py-8">
+                <div
+                  className="pointer-events-none absolute -right-16 -top-20 h-48 w-48 rounded-full bg-gradient-to-br from-accent/30 to-transparent blur-3xl"
+                  aria-hidden
+                />
+                <div
+                  className="pointer-events-none absolute -bottom-12 -left-10 h-40 w-40 rounded-full bg-gradient-to-tr from-secondary/20 to-transparent blur-3xl"
+                  aria-hidden
+                />
+                <div className="pointer-events-none absolute left-0 top-0 h-full w-1 rounded-l-3xl bg-gradient-to-b from-accent via-brand/80 to-secondary opacity-90" aria-hidden />
+                <div className="relative flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-6">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-brandDeep via-brand to-secondary text-white shadow-[0_12px_28px_rgba(45,30,20,0.25)] ring-1 ring-white/25">
+                    <Sparkles className="h-5 w-5" strokeWidth={1.75} aria-hidden />
+                  </div>
+                  <div className="min-w-0 space-y-3 pl-0 sm:pl-1">
+                    <p className="font-display text-[10px] font-semibold uppercase tracking-[0.32em] text-accent">
+                      Bespoke scope
+                    </p>
+                    <p className="font-display text-[clamp(1.05rem,2.1vw,1.25rem)] font-medium leading-[1.65] tracking-[-0.015em] text-slate-800">
+                      All of our services can be fully tailored to your specific needs, ensuring the right solution for
+                      every property.
+                    </p>
+                  </div>
+                </div>
+              </aside>
             </div>
           </article>
 
@@ -88,6 +163,7 @@ export default function CleaningServicePage() {
                 href={CLEANING_WHATSAPP_HREF}
                 target="_blank"
                 rel="noreferrer"
+                aria-label="Request a cleaning service proposal on WhatsApp"
                 className="rounded-xl px-5 py-3 border border-white/35 bg-white/10 text-white font-semibold text-center hover:bg-white/15 transition inline-flex items-center justify-center gap-2"
               >
                 <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5 shrink-0 fill-current">

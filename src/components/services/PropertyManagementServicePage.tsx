@@ -1,5 +1,33 @@
 import Image from "next/image";
+import Link from "next/link";
 import PageContainer from "@/components/layout/PageContainer";
+
+type ServiceHeroCaptionProps = {
+  eyebrow: string;
+  title: string;
+  blurb: string;
+};
+
+/** Premium overlay for service imagery: glass panel, accent rail, editorial typography. */
+function ServiceHeroCaption({ eyebrow, title, blurb }: ServiceHeroCaptionProps) {
+  return (
+    <div className="absolute inset-x-0 bottom-0 z-10 p-4 md:p-6">
+      <div className="relative overflow-hidden rounded-2xl border border-white/25 bg-gradient-to-br from-white/[0.14] via-white/[0.06] to-transparent p-[1px] shadow-[0_20px_50px_rgba(15,10,8,0.45)] backdrop-blur-md">
+        <div className="relative rounded-[15px] bg-gradient-to-br from-black/45 via-black/30 to-black/20 px-5 py-5 md:px-7 md:py-6">
+          <div className="border-l-2 border-accent/90 pl-4 md:pl-5 [box-shadow:inset_4px_0_24px_-4px_rgba(212,175,106,0.15)]">
+            <p className="font-display text-[10px] font-semibold uppercase tracking-[0.32em] text-accent drop-shadow-sm">
+              {eyebrow}
+            </p>
+            <p className="mt-2.5 font-display text-[clamp(1.2rem,2.8vw,1.65rem)] font-semibold leading-[1.18] tracking-[-0.02em] text-white [text-shadow:0_2px_24px_rgba(0,0,0,0.35)]">
+              {title}
+            </p>
+            <p className="mt-3 max-w-lg text-[13px] leading-relaxed text-white/85 md:text-sm">{blurb}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 type PropertyManagementServicePageProps = {
   serviceLabel: string;
@@ -10,21 +38,21 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
     "Communal Property Management": {
       focus: "COMMUNAL OPERATIONS",
       subtitle:
-        "This page is focused on communal building management, with additional modules for individual management and renovation support.",
+        "This page is focused on communal building management, with additional modules for individual management, renovation, outdoor care, and pest control.",
       bullets: [
         "Current focus: Communal Property Management",
         "Includes operational workflows and owner reporting",
-        "Also shows related individual and renovation modules"
+        "Also covers individual, renovation, garden & pool, and pest control modules"
       ]
     },
     "Individual Property Management": {
       focus: "INDIVIDUAL ASSET CARE",
       subtitle:
-        "This page is focused on individual property management, with additional modules for communal operations and renovation support.",
+        "This page is focused on individual property management, with additional modules for communal operations, renovation, outdoor care, and pest control.",
       bullets: [
         "Current focus: Individual Property Management",
         "Includes tenant, maintenance, and communication workflows",
-        "Also shows related communal and renovation modules"
+        "Also covers communal, renovation, garden & pool, and pest control modules"
       ]
     },
     "Renovation Services": {
@@ -67,6 +95,24 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
     "Professional cleaning services (KAJA Green Clean)",
     "Regular property checks for vacant homes",
     "Ongoing support with fast response times"
+  ];
+
+  const gardenPoolBullets = [
+    "Lawn, planting beds, borders, and irrigation line checks",
+    "Seasonal pruning, weed control, and debris clearance",
+    "Pool water chemistry, filtration, and routine equipment inspection",
+    "Deck, patio, and pool surround cleaning with safety in mind",
+    "Coordination with trusted suppliers and documented service visits",
+    "Optional upgrades: lighting checks, outdoor furniture areas, and storm readiness"
+  ];
+
+  const pestControlBullets = [
+    "Preventive inspections and treatment plans for common areas and service zones",
+    "Coordinated interior and perimeter treatments where permitted",
+    "Rapid call-outs for urgent reports from tenants or staff",
+    "Food-safe and hygiene-aware approaches for hospitality and short-stay units",
+    "Seasonal adjustments for insects, rodents, and local pests",
+    "Reporting aligned with building rules and owner expectations"
   ];
 
   const communalServices = [
@@ -241,6 +287,105 @@ export default function PropertyManagementServicePage({ serviceLabel }: Property
               <p className="mt-4 text-slate-700 leading-7">
                 Through our vetted contractor network, projects are executed to high standards, on schedule, and with
                 full visibility for owners.
+              </p>
+            </div>
+          </article>
+
+          <article
+            id="garden-pool"
+            className="scroll-mt-28 md:scroll-mt-32 grid lg:grid-cols-2 gap-6 items-stretch"
+          >
+            <div className="p-2 md:p-4 order-2 lg:order-1">
+              <p className="text-xs tracking-[0.16em] text-muted font-semibold">GARDEN & POOL MAINTENANCE</p>
+              <p className="mt-4 text-slate-700 leading-7">
+                Crystal-clear water, tidy surrounds, and healthy planting support both communal schemes and private
+                portfolios. We coordinate scheduled visits, quality checks, and vendor performance so pools, decks, and
+                gardens stay on standard—with clear reporting for committees and owners.
+              </p>
+              <p className="mt-4 text-slate-700 leading-7">
+                Frequency aligns with season, usage, and local conditions, with documented service visits you can rely on.
+              </p>
+              <ul className="mt-5 grid gap-2 text-slate-700">
+                {gardenPoolBullets.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-secondary shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5">
+                <Link
+                  href="/services/garden-pool-maintenance"
+                  className="text-sm font-semibold text-brand hover:text-brandDeep underline-offset-4 hover:underline"
+                >
+                  Full garden & pool service details →
+                </Link>
+              </p>
+            </div>
+            <div className="relative overflow-hidden rounded-3xl min-h-[320px] md:min-h-[340px] order-1 lg:order-2">
+              <Image
+                src="/images/claning-services/pool-services.webp"
+                alt="Pool and garden maintenance for managed properties"
+                fill
+                className="object-cover object-center"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brandDeep/92 via-brand/40 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_90%_60%_at_80%_20%,rgba(212,175,106,0.18),transparent_60%)] pointer-events-none" />
+              <ServiceHeroCaption
+                eyebrow="Outdoor & pool care"
+                title="Landscapes, irrigation, and pool chemistry—on rhythm."
+                blurb="Scheduled care for communal and private assets, with vendor oversight and visit documentation you can trust."
+              />
+            </div>
+          </article>
+
+          <article
+            id="pest-control"
+            className="scroll-mt-28 md:scroll-mt-32 grid lg:grid-cols-2 gap-6 items-stretch"
+          >
+            <div className="relative overflow-hidden rounded-3xl min-h-[320px] md:min-h-[340px] bg-gradient-to-br from-pageSoft via-page to-brandDeep/[0.12] ring-1 ring-black/5">
+              <Image
+                src="/images/claning-services/pest-control-services.webp"
+                alt="Pest prevention and treatment for managed properties"
+                fill
+                className="object-contain object-center p-3 sm:p-4 md:p-5"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brandDeep/65 via-brandDeep/15 to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-brandDeep/45 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_20%_85%,rgba(212,175,106,0.1),transparent_55%)] pointer-events-none" />
+              <ServiceHeroCaption
+                eyebrow="Pest control"
+                title="Prevention, rapid response, and audit-ready documentation."
+                blurb="Programs and call-outs through vetted partners—structured for tenants, committees, and owner reporting."
+              />
+            </div>
+            <div className="p-2 md:p-4">
+              <p className="text-xs tracking-[0.16em] text-muted font-semibold">PEST CONTROL</p>
+              <p className="mt-4 text-slate-700 leading-7">
+                Pest issues can escalate quickly in shared buildings and rental units. We manage preventive programs and
+                responsive treatment through vetted partners, with schedules and communication that keep tenants informed
+                and owners protected.
+              </p>
+              <p className="mt-4 text-slate-700 leading-7">
+                Every engagement is documented with scope, timing, and follow-up recommendations so committees and owners
+                have a clear audit trail.
+              </p>
+              <ul className="mt-5 grid gap-2 text-slate-700">
+                {pestControlBullets.map((item) => (
+                  <li key={item} className="flex items-start gap-2">
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-accent shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5">
+                <Link
+                  href="/services/pest-control"
+                  className="text-sm font-semibold text-brand hover:text-brandDeep underline-offset-4 hover:underline"
+                >
+                  Full pest control service details →
+                </Link>
               </p>
             </div>
           </article>

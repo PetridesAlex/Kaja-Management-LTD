@@ -89,7 +89,7 @@ export default function ContactCTASection() {
                   </svg>
                 </a>
                 <a
-                  href="https://www.linkedin.com/"
+                  href="https://www.linkedin.com/company/kajamanagement/"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center justify-center rounded-lg bg-brandSoft text-white p-2 shadow-sm"

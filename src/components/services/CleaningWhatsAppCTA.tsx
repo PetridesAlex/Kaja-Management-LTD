@@ -1,9 +1,7 @@
-/** WhatsApp deep link for KAJA Green Clean — cleaning proposals only (same desk number). */
+/** WhatsApp deep link for KAJA Green Clean — cleaning proposals only. */
 export const CLEANING_WHATSAPP_HREF =
-  "https://wa.me/35799961512?text=" +
-  encodeURIComponent(
-    "Hello KAJA Green Clean — I would like a cleaning service proposal only. Please reply with scope, availability, and next steps."
-  );
+  "https://wa.me/35797872535?text=" +
+  encodeURIComponent("Hello KAJA Green Clean — I would like a cleaning service proposal only.");
 
 type CleaningWhatsAppFloatingProps = {
   className?: string;
@@ -15,7 +13,7 @@ export default function CleaningWhatsAppFloating({ className = "" }: CleaningWha
       href={CLEANING_WHATSAPP_HREF}
       target="_blank"
       rel="noreferrer"
-      aria-label="Request a cleaning proposal on WhatsApp"
+      aria-label="WhatsApp — Green Clean proposal"
       className={`fixed left-4 bottom-4 z-[55] md:left-6 md:bottom-6 inline-flex max-w-[calc(100vw-2rem)] items-center gap-2 rounded-full border border-white/20 bg-[#25D366] px-2.5 py-2 pl-2 text-white shadow-[0_10px_32px_rgba(37,211,102,0.38)] ring-1 ring-black/5 transition hover:bg-[#20bd5a] hover:shadow-[0_12px_36px_rgba(37,211,102,0.48)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white ${className}`}
     >
       <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/18">
@@ -24,11 +22,11 @@ export default function CleaningWhatsAppFloating({ className = "" }: CleaningWha
         </svg>
       </span>
       <span className="min-w-0 pr-0.5 text-left leading-none">
-        <span className="block font-display text-[8px] sm:text-[9px] font-semibold uppercase tracking-[0.2em] text-white/75">
-          Green Clean · Proposal
-        </span>
-        <span className="mt-0.5 block font-display text-[10px] sm:text-[11px] font-semibold tracking-[0.05em] text-white">
+        <span className="block font-display text-[10px] sm:text-[11px] font-semibold tracking-[0.05em] text-white">
           WhatsApp
+        </span>
+        <span className="mt-0.5 block font-display text-[8px] sm:text-[9px] font-semibold uppercase tracking-[0.2em] text-white/75">
+          Green Clean · Proposal
         </span>
       </span>
     </a>

@@ -25,6 +25,13 @@ select {
   font-family: var(--font-body), sans-serif;
 }
 
+/* Bound small inline SVG icons (social, etc.) so a dev preview / HMR glitch can’t scale them to the viewport */
+a.inline-flex svg.h-4,
+a.inline-flex svg.h-5 {
+  max-width: 1.5rem;
+  max-height: 1.5rem;
+}
+
 ::selection {
   background: rgba(194, 154, 102, 0.28);
   color: #4a3423;

@@ -13,13 +13,15 @@ const serviceImages: Record<string, string> = {
   s6: "/images/claning-services/pest-control-services.webp"
 };
 
+const COMMUNAL_PM = "/services/communal-property-management";
+
 const serviceLinks: Record<string, string> = {
-  s1: "/services/communal-property-management",
+  s1: COMMUNAL_PM,
   s2: "/services/individual-property-management",
   s3: "/services/cleaning",
   s4: "/services/renovation",
-  s5: "/services/garden-pool-maintenance",
-  s6: "/services/pest-control"
+  s5: `${COMMUNAL_PM}#garden-pool`,
+  s6: `${COMMUNAL_PM}#pest-control`
 };
 
 export default function ServicesSection() {

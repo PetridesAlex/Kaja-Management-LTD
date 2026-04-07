@@ -82,14 +82,22 @@ const steps = [
   "You receive photos and invoice (optional key-safe access)."
 ];
 
+const COMMUNAL_PM = "/services/communal-property-management";
+
 const serviceLinks: Record<string, string> = {
-  s1: "/services/communal-property-management",
+  s1: COMMUNAL_PM,
   s2: "/services/individual-property-management",
   s3: "/services/cleaning",
   s4: "/services/renovation",
-  s5: "/services/garden-pool-maintenance",
-  s6: "/services/pest-control"
+  s5: `${COMMUNAL_PM}#garden-pool`,
+  s6: `${COMMUNAL_PM}#pest-control`
 };
+
+const managementSocial = {
+  instagram: "https://www.instagram.com/",
+  facebook: "https://www.facebook.com/",
+  linkedin: "https://www.linkedin.com/company/kajamanagement/"
+} as const;
 
 export default function ServicesPage() {
   return (
@@ -119,6 +127,50 @@ export default function ServicesPage() {
               <Link href="/services#communal-property-management" className="rounded-xl px-6 py-3 bg-white/20 text-white font-semibold min-h-12">
                 Explore Services
               </Link>
+            </div>
+
+            <div className="mt-8 flex flex-col gap-4 border-t border-white/20 pt-6 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="font-display text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">Connect</p>
+                <p className="mt-1 max-w-md font-display text-sm text-white/92">
+                  Follow Kaja Management for service updates and property insights.
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <a
+                  href={managementSocial.instagram}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Kaja Management on Instagram"
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white shadow-sm backdrop-blur-sm transition hover:bg-white/20 hover:border-white/35"
+                >
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
+                    <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.9 2.3a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
+                  </svg>
+                </a>
+                <a
+                  href={managementSocial.facebook}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Kaja Management on Facebook"
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white shadow-sm backdrop-blur-sm transition hover:bg-white/20 hover:border-white/35"
+                >
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
+                    <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.87.25-1.46 1.5-1.46H17V5c-.36-.05-1.2-.15-2.28-.15-2.26 0-3.82 1.38-3.82 3.91V11H8.5v3h2.4v8h2.6Z" />
+                  </svg>
+                </a>
+                <a
+                  href={managementSocial.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Kaja Management on LinkedIn"
+                  className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/10 text-white shadow-sm backdrop-blur-sm transition hover:bg-white/20 hover:border-white/35"
+                >
+                  <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
+                    <path d="M6.94 8.5H3.56V20h3.38V8.5Zm.22-3.55A1.95 1.95 0 1 0 3.25 4.95a1.95 1.95 0 0 0 3.91 0ZM20.75 13.38c0-3.38-1.8-4.95-4.2-4.95-1.93 0-2.8 1.06-3.28 1.8V8.5H9.9V20h3.37v-6.05c0-1.6.3-3.15 2.28-3.15 1.95 0 1.98 1.82 1.98 3.25V20h3.22v-6.62Z" />
+                  </svg>
+                </a>
+              </div>
             </div>
           </div>
         </div>

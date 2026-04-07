@@ -27,7 +27,7 @@ const channels = [
   },
   {
     id: "linkedin",
-    href: "https://www.linkedin.com/",
+    href: "https://www.linkedin.com/company/kajamanagement/",
     label: "LinkedIn",
     bgClass: "bg-brandSoft",
     icon: (

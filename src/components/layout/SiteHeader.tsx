@@ -14,21 +14,41 @@ const navLinks = [
   { href: "/contact", label: "Contact" }
 ];
 
+const COMMUNAL_PM_PATH = "/services/communal-property-management";
+
 const serviceLinks = [
-  { href: "/services/communal-property-management", label: "Communal Property Management" },
+  { href: COMMUNAL_PM_PATH, label: "Communal Property Management" },
   { href: "/services/individual-property-management", label: "Individual Property Management" },
   { href: "/services/cleaning", label: "Cleaning Services" },
   { href: "/services/renovation", label: "Renovation Services" },
-  { href: "/services/garden-pool-maintenance", label: "Garden & Pool Maintenance" },
-  { href: "/services/pest-control", label: "Pest Control" }
+  { href: `${COMMUNAL_PM_PATH}#garden-pool`, label: "Garden & Pool Maintenance" },
+  { href: `${COMMUNAL_PM_PATH}#pest-control`, label: "Pest Control" }
 ];
+
+function isServiceMenuItemActive(href: string, pathname: string, urlHash: string): boolean {
+  const i = href.indexOf("#");
+  const path = i === -1 ? href : href.slice(0, i);
+  const fragment = i === -1 ? "" : href.slice(i + 1);
+  if (pathname !== path) return false;
+  if (fragment) return urlHash === fragment;
+  if (path === COMMUNAL_PM_PATH && (urlHash === "garden-pool" || urlHash === "pest-control")) return false;
+  return true;
+}
 
 export default function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [urlHash, setUrlHash] = useState("");
   const servicesMenuRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const syncHash = () => setUrlHash(typeof window !== "undefined" ? window.location.hash.replace(/^#/, "") : "");
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
 
   useEffect(() => {
     const onDocumentPointerDown = (event: MouseEvent) => {
@@ -96,10 +116,10 @@ export default function SiteHeader() {
                         </div>
                         <div className="flex flex-col gap-0.5 p-1.5">
                           {serviceLinks.map((service) => {
-                            const isActive = pathname === service.href;
+                            const isActive = isServiceMenuItemActive(service.href, pathname, urlHash);
                             return (
                               <Link
-                                key={service.href}
+                                key={`${service.label}-${service.href}`}
                                 href={service.href}
                                 role="menuitem"
                                 className={`group flex items-start justify-between gap-3 rounded-xl px-3.5 py-3 text-left text-[12px] font-display font-semibold leading-snug tracking-[0.04em] transition ${
@@ -170,7 +190,7 @@ export default function SiteHeader() {
             </svg>
           </a>
           <a
-            href="https://www.linkedin.com/"
+            href="https://www.linkedin.com/company/kajamanagement/"
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
@@ -207,7 +227,7 @@ export default function SiteHeader() {
         </a>
 
         <a
-          href="https://www.linkedin.com/"
+          href="https://www.linkedin.com/company/kajamanagement/"
           target="_blank"
           rel="noreferrer"
           aria-label="LinkedIn"
@@ -249,7 +269,7 @@ export default function SiteHeader() {
                       <div id="mobile-services-list" className="px-2 pb-2 grid gap-1">
                         {serviceLinks.map((service) => (
                           <Link
-                            key={service.href}
+                            key={`${service.label}-${service.href}`}
                             href={service.href}
                             className="rounded-lg px-3 py-2 text-sm text-slate-100 hover:bg-white/15 hover:text-white transition"
                             onClick={() => {
@@ -307,7 +327,7 @@ export default function SiteHeader() {
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/company/kajamanagement/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"

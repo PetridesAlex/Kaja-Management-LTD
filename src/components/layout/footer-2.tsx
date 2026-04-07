@@ -94,7 +94,7 @@ export default function Footer2() {
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/company/kajamanagement/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
