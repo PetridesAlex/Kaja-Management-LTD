@@ -5,7 +5,7 @@ import { useState } from "react";
 const channels = [
   {
     id: "instagram",
-    href: "https://www.instagram.com/",
+    href: "https://www.instagram.com/kaja_management/",
     label: "Instagram",
     bgClass: "bg-accent",
     icon: (

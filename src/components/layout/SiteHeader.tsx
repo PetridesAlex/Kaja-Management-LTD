@@ -146,7 +146,7 @@ export default function SiteHeader() {
 
         <div className="hidden md:flex items-center gap-2 ml-4 shrink-0">
           <a
-            href="https://www.instagram.com/"
+            href="https://www.instagram.com/kaja_management/"
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"
@@ -181,7 +181,7 @@ export default function SiteHeader() {
         </div>
 
         <a
-          href="https://www.instagram.com/"
+          href="https://www.instagram.com/kaja_management/"
           target="_blank"
           rel="noreferrer"
           aria-label="Instagram"
@@ -283,7 +283,7 @@ export default function SiteHeader() {
 
             <div className="mt-2 flex items-center gap-2">
               <a
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/kaja_management/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"

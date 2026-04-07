@@ -111,7 +111,7 @@ export default function ContactCTASection() {
               </div>
               <div className="flex items-center gap-2">
                 <a
-                  href="https://www.instagram.com/"
+                  href="https://www.instagram.com/kaja_management/"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center justify-center rounded-lg bg-accent text-white p-2 shadow-sm"

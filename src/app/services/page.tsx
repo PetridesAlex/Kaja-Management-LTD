@@ -94,7 +94,7 @@ const serviceLinks: Record<string, string> = {
 };
 
 const managementSocial = {
-  instagram: "https://www.instagram.com/",
+  instagram: "https://www.instagram.com/kaja_management/",
   facebook: "https://www.facebook.com/",
   linkedin: "https://www.linkedin.com/company/kajamanagement/"
 } as const;

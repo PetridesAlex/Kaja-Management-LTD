@@ -72,7 +72,7 @@ export default function Footer2() {
 
             <div className="mt-5 flex items-center gap-2">
               <a
-                href="https://www.instagram.com/"
+                href="https://www.instagram.com/kaja_management/"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
