@@ -86,7 +86,9 @@ const serviceLinks: Record<string, string> = {
   s1: "/services/communal-property-management",
   s2: "/services/individual-property-management",
   s3: "/services/cleaning",
-  s4: "/services/renovation"
+  s4: "/services/renovation",
+  s5: "/services/garden-pool-maintenance",
+  s6: "/services/pest-control"
 };
 
 export default function ServicesPage() {
@@ -126,7 +128,7 @@ export default function ServicesPage() {
           title="Services"
           subtitle="Comprehensive management and brokerage services tailored for modern portfolios."
         />
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-4">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
           {services.map((service, index) => (
             <article
               key={service.id}

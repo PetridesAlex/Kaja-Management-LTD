@@ -8,14 +8,18 @@ const serviceImages: Record<string, string> = {
   s1: "/images/claning-services/building-management.webp",
   s2: "/images/claning-services/all-day-support.webp",
   s3: "/images/claning-services/cleaning-maintenance.webp",
-  s4: "/images/claning-services/rennovation.webp"
+  s4: "/images/claning-services/rennovation.webp",
+  s5: "/images/claning-services/pool-services.webp",
+  s6: "/images/claning-services/pest-control-services.webp"
 };
 
 const serviceLinks: Record<string, string> = {
   s1: "/services/communal-property-management",
   s2: "/services/individual-property-management",
   s3: "/services/cleaning",
-  s4: "/services/renovation"
+  s4: "/services/renovation",
+  s5: "/services/garden-pool-maintenance",
+  s6: "/services/pest-control"
 };
 
 export default function ServicesSection() {
@@ -28,7 +32,7 @@ export default function ServicesSection() {
           subtitle="Integrated support for owners and investors, from operations to long-term value optimization."
         />
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
             {services.map((service, index) => (
               <article key={service.id} className="transition duration-300 hover:-translate-y-1">
                 <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
@@ -36,7 +40,8 @@ export default function ServicesSection() {
                     src={serviceImages[service.id]}
                     alt={service.title}
                     fill
-                    className="object-cover"
+                    className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 400px"
                   />
                 </div>
 

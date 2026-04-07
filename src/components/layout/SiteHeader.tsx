@@ -9,7 +9,7 @@ import HeaderServicesTicker from "@/components/layout/HeaderServicesTicker";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
-  { href: "/services/cleaning", label: "Green Clean" },
+  { href: "/services/cleaning", label: "Cleaning" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" }
 ];
@@ -18,7 +18,9 @@ const serviceLinks = [
   { href: "/services/communal-property-management", label: "Communal Property Management" },
   { href: "/services/individual-property-management", label: "Individual Property Management" },
   { href: "/services/cleaning", label: "Cleaning Services" },
-  { href: "/services/renovation", label: "Renovation Services" }
+  { href: "/services/renovation", label: "Renovation Services" },
+  { href: "/services/garden-pool-maintenance", label: "Garden & Pool Maintenance" },
+  { href: "/services/pest-control", label: "Pest Control" }
 ];
 
 export default function SiteHeader() {
@@ -83,17 +85,43 @@ export default function SiteHeader() {
 
                   {servicesOpen ? (
                     <div className="absolute right-0 top-full pt-2 z-50">
-                      <div className="w-[320px] rounded-2xl border border-accent/35 bg-page/95 backdrop-blur p-2.5 shadow-xl">
-                        {serviceLinks.map((service) => (
-                          <Link
-                            key={service.href}
-                            href={service.href}
-                            className="block rounded-xl px-3.5 py-2.5 text-[13px] tracking-[0.04em] font-medium text-brand hover:bg-pageSoft/90 hover:text-secondary transition"
-                            onClick={() => setServicesOpen(false)}
-                          >
-                            {service.label}
-                          </Link>
-                        ))}
+                      <div
+                        className="w-[min(100vw-2rem,340px)] overflow-hidden rounded-2xl border border-accent/30 bg-gradient-to-br from-white via-page to-pageSoft/95 shadow-[0_22px_55px_rgba(45,30,20,0.14)] ring-1 ring-white/90 backdrop-blur-md"
+                        role="menu"
+                        aria-label="Service menu"
+                      >
+                        <div className="border-b border-accent/15 bg-gradient-to-r from-brandDeep/[0.06] via-transparent to-accent/[0.06] px-4 py-3">
+                          <p className="font-display text-[9px] font-semibold uppercase tracking-[0.28em] text-brand/50">Service suite</p>
+                          <p className="mt-1 font-display text-[13px] font-semibold tracking-wide text-brandDeep">Browse by specialty</p>
+                        </div>
+                        <div className="flex flex-col gap-0.5 p-1.5">
+                          {serviceLinks.map((service) => {
+                            const isActive = pathname === service.href;
+                            return (
+                              <Link
+                                key={service.href}
+                                href={service.href}
+                                role="menuitem"
+                                className={`group flex items-start justify-between gap-3 rounded-xl px-3.5 py-3 text-left text-[12px] font-display font-semibold leading-snug tracking-[0.04em] transition ${
+                                  isActive
+                                    ? "bg-gradient-to-r from-accent/20 via-secondary/10 to-transparent text-brandDeep shadow-[inset_0_0_0_1px_rgba(212,175,106,0.35)]"
+                                    : "text-brand/90 hover:bg-white hover:text-brandDeep hover:shadow-sm"
+                                }`}
+                                onClick={() => setServicesOpen(false)}
+                              >
+                                <span className="min-w-0 flex-1">{service.label}</span>
+                                <span
+                                  className={`mt-0.5 shrink-0 text-[11px] font-normal text-accent transition ${
+                                    isActive ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                                  }`}
+                                  aria-hidden
+                                >
+                                  →
+                                </span>
+                              </Link>
+                            );
+                          })}
+                        </div>
                       </div>
                     </div>
                   ) : null}
@@ -118,15 +146,15 @@ export default function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden md:flex items-center gap-2 ml-4">
+        <div className="hidden md:flex items-center gap-2 ml-4 shrink-0">
           <a
             href="https://www.instagram.com/"
             target="_blank"
             rel="noreferrer"
             aria-label="Instagram"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent/20 text-white hover:bg-accent/30 transition"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-accent/20 text-white hover:bg-accent/30 transition"
           >
-            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
               <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.9 2.3a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
             </svg>
           </a>
@@ -135,9 +163,9 @@ export default function SiteHeader() {
             target="_blank"
             rel="noreferrer"
             aria-label="Facebook"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-secondary/25 text-white hover:bg-secondary/35 transition"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-secondary/25 text-white hover:bg-secondary/35 transition"
           >
-            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
               <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.87.25-1.46 1.5-1.46H17V5c-.36-.05-1.2-.15-2.28-.15-2.26 0-3.82 1.38-3.82 3.91V11H8.5v3h2.4v8h2.6Z" />
             </svg>
           </a>
@@ -146,9 +174,9 @@ export default function SiteHeader() {
             target="_blank"
             rel="noreferrer"
             aria-label="LinkedIn"
-            className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brandSoft/45 text-white hover:bg-brandSoft/60 transition"
+            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brandSoft/45 text-white hover:bg-brandSoft/60 transition"
           >
-            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
               <path d="M6.94 8.5H3.56V20h3.38V8.5Zm.22-3.55A1.95 1.95 0 1 0 3.25 4.95a1.95 1.95 0 0 0 3.91 0ZM20.75 13.38c0-3.38-1.8-4.95-4.2-4.95-1.93 0-2.8 1.06-3.28 1.8V8.5H9.9V20h3.37v-6.05c0-1.6.3-3.15 2.28-3.15 1.95 0 1.98 1.82 1.98 3.25V20h3.22v-6.62Z" />
             </svg>
           </a>
@@ -161,7 +189,7 @@ export default function SiteHeader() {
           aria-label="Instagram"
           className="md:hidden ml-auto mr-2 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent/25 text-white shadow-sm"
         >
-          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
             <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.9 2.3a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
           </svg>
         </a>
@@ -173,7 +201,7 @@ export default function SiteHeader() {
           aria-label="Facebook"
           className="md:hidden mr-2 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-secondary/30 text-white shadow-sm"
         >
-          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
             <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.87.25-1.46 1.5-1.46H17V5c-.36-.05-1.2-.15-2.28-.15-2.26 0-3.82 1.38-3.82 3.91V11H8.5v3h2.4v8h2.6Z" />
           </svg>
         </a>
@@ -185,7 +213,7 @@ export default function SiteHeader() {
           aria-label="LinkedIn"
           className="md:hidden mr-2 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brandSoft/50 text-white shadow-sm"
         >
-          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+          <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
             <path d="M6.94 8.5H3.56V20h3.38V8.5Zm.22-3.55A1.95 1.95 0 1 0 3.25 4.95a1.95 1.95 0 0 0 3.91 0ZM20.75 13.38c0-3.38-1.8-4.95-4.2-4.95-1.93 0-2.8 1.06-3.28 1.8V8.5H9.9V20h3.37v-6.05c0-1.6.3-3.15 2.28-3.15 1.95 0 1.98 1.82 1.98 3.25V20h3.22v-6.62Z" />
           </svg>
         </a>
@@ -263,7 +291,7 @@ export default function SiteHeader() {
                 aria-label="Instagram"
                 className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent/25 text-white"
               >
-                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
                   <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5a4.25 4.25 0 0 0 4.25 4.25h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm8.9 2.3a.95.95 0 1 1 0 1.9.95.95 0 0 1 0-1.9ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 1.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
                 </svg>
               </a>
@@ -274,7 +302,7 @@ export default function SiteHeader() {
                 aria-label="Facebook"
                 className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-secondary/30 text-white"
               >
-                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
                   <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.87.25-1.46 1.5-1.46H17V5c-.36-.05-1.2-.15-2.28-.15-2.26 0-3.82 1.38-3.82 3.91V11H8.5v3h2.4v8h2.6Z" />
                 </svg>
               </a>
@@ -285,7 +313,7 @@ export default function SiteHeader() {
                 aria-label="LinkedIn"
                 className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-brandSoft/50 text-white"
               >
-                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 fill-current">
+                <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 shrink-0 fill-current">
                   <path d="M6.94 8.5H3.56V20h3.38V8.5Zm.22-3.55A1.95 1.95 0 1 0 3.25 4.95a1.95 1.95 0 0 0 3.91 0ZM20.75 13.38c0-3.38-1.8-4.95-4.2-4.95-1.93 0-2.8 1.06-3.28 1.8V8.5H9.9V20h3.37v-6.05c0-1.6.3-3.15 2.28-3.15 1.95 0 1.98 1.82 1.98 3.25V20h3.22v-6.62Z" />
                 </svg>
               </a>

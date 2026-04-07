@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "motion/react";
-import { Clock3, Mail, PhoneCall } from "lucide-react";
+import { Mail, PhoneCall } from "lucide-react";
 import ScrollReveal from "@/components/animated/ScrollReveal";
 import Input from "@/components/shared/Input";
 import PrimaryButton from "@/components/shared/PrimaryButton";
@@ -13,7 +13,6 @@ type FormErrors = {
   name?: string;
   email?: string;
   phone?: string;
-  purpose?: string;
   propertyType?: string;
   message?: string;
 };
@@ -22,7 +21,6 @@ export default function ContactCTASection() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [purpose, setPurpose] = useState("Communal Property Management");
   const [propertyType, setPropertyType] = useState("Apartment Building");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
@@ -33,7 +31,6 @@ export default function ContactCTASection() {
     if (!name.trim()) nextErrors.name = "Name is required.";
     if (!/^\S+@\S+\.\S+$/.test(email)) nextErrors.email = "Enter a valid email.";
     if (!/^\+?[0-9\s]{7,}$/.test(phone)) nextErrors.phone = "Enter a valid phone number.";
-    if (!purpose) nextErrors.purpose = "Select inquiry purpose.";
     if (!propertyType) nextErrors.propertyType = "Select property type.";
     if (message.trim().length < 10) nextErrors.message = "Message must be at least 10 characters.";
 
@@ -44,7 +41,6 @@ export default function ContactCTASection() {
     setName("");
     setEmail("");
     setPhone("");
-    setPurpose("Communal Property Management");
     setPropertyType("Apartment Building");
     setMessage("");
   };
@@ -115,7 +111,7 @@ export default function ContactCTASection() {
               </div>
             </div>
 
-            <div className="mt-4 grid sm:grid-cols-3 gap-3">
+            <div className="mt-4 grid sm:grid-cols-2 gap-3">
               <motion.a
                 href="tel:+35799961512"
                 initial={{ opacity: 0, y: 10 }}
@@ -147,20 +143,6 @@ export default function ContactCTASection() {
                   Info@kajamanagement.eu
                 </p>
               </motion.a>
-
-              <motion.article
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.35 }}
-                transition={{ duration: 0.4, delay: 0.16 }}
-                className="group rounded-2xl bg-white/8 border border-white/20 p-4 backdrop-blur-sm hover:bg-white/12 transition"
-              >
-                <div className="h-12 w-12 rounded-xl bg-gradient-to-br from-secondary to-accent text-white flex items-center justify-center shadow-sm">
-                  <Clock3 className="h-5 w-5" />
-                </div>
-                <p className="text-[11px] tracking-[0.16em] text-white/75 font-semibold mt-3">WORKING HOURS</p>
-                <p className="text-white font-semibold mt-1 group-hover:text-accentSoft transition">Mon-Sat: 08:00 - 19:00</p>
-              </motion.article>
             </div>
           </div>
 
@@ -178,19 +160,6 @@ export default function ContactCTASection() {
                 <Input label="Full Name" value={name} onChange={setName} error={errors.name} placeholder="Your full name" />
                 <Input label="Business Email" value={email} onChange={setEmail} error={errors.email} placeholder="info@company.com" />
                 <Input label="Direct Phone" value={phone} onChange={setPhone} error={errors.phone} placeholder="+357 99961512" />
-                <div className="hidden md:block" />
-                <Select
-                  label="Service Package"
-                  value={purpose}
-                  onChange={setPurpose}
-                  options={[
-                    { label: "Communal Property Management", value: "Communal Property Management" },
-                    { label: "Individual Property Management", value: "Individual Property Management" },
-                    { label: "Tenant Coordination & Leasing", value: "Tenant Coordination & Leasing" },
-                    { label: "Cleaning & Turnover Operations", value: "Cleaning & Turnover Operations" },
-                    { label: "Renovation Oversight", value: "Renovation Oversight" }
-                  ]}
-                />
                 <Select
                   label="Property Type"
                   value={propertyType}

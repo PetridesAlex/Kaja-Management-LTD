@@ -24,5 +24,17 @@ export const services: Service[] = [
     title: "Renovation Services",
     description: "Value-driven renovation planning and execution with transparent budgets and timelines.",
     icon: "🛠️"
+  },
+  {
+    id: "s5",
+    title: "Garden & Pool Maintenance",
+    description: "Scheduled landscaping, irrigation checks, and pool chemistry and equipment care for communal and private assets.",
+    icon: "🌿"
+  },
+  {
+    id: "s6",
+    title: "Pest Control",
+    description: "Preventive treatments, responsive call-outs, and documented programs aligned with property standards.",
+    icon: "🛡️"
   }
 ];

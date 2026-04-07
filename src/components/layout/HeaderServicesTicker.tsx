@@ -7,6 +7,8 @@ const tickerItems: { href: string; label: string }[] = [
   { href: "/services/individual-property-management", label: "Individual Property Management" },
   { href: "/services/cleaning", label: "KAJA Green Clean" },
   { href: "/services/renovation", label: "Renovation Services" },
+  { href: "/services/garden-pool-maintenance", label: "Garden & Pool Maintenance" },
+  { href: "/services/pest-control", label: "Pest Control" },
   { href: "/services", label: "Premium Portfolio Management" },
   { href: "/contact", label: "Concierge & Owner Support" }
 ];
