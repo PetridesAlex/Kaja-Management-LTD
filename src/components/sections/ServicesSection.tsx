@@ -8,9 +8,7 @@ const serviceImages: Record<string, string> = {
   s1: "/images/claning-services/building-management.webp",
   s2: "/images/claning-services/all-day-support.webp",
   s3: "/images/claning-services/cleaning-maintenance.webp",
-  s4: "/images/claning-services/rennovation.webp",
-  s5: "/images/claning-services/pool-services.webp",
-  s6: "/images/claning-services/pest-control-services.webp"
+  s4: "/images/claning-services/rennovation.webp"
 };
 
 const COMMUNAL_PM = "/services/communal-property-management";
@@ -19,10 +17,11 @@ const serviceLinks: Record<string, string> = {
   s1: COMMUNAL_PM,
   s2: "/services/individual-property-management",
   s3: "/services/cleaning",
-  s4: "/services/renovation",
-  s5: `${COMMUNAL_PM}#garden-pool`,
-  s6: `${COMMUNAL_PM}#pest-control`
+  s4: "/services/renovation"
 };
+
+/** Home “Property Services” grid omits garden/pool and pest (same as header nav). */
+const HOME_EXCLUDED_SERVICE_IDS = new Set(["s5", "s6"]);
 
 export default function ServicesSection() {
   return (
@@ -35,7 +34,9 @@ export default function ServicesSection() {
         />
 
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {services.map((service, index) => (
+            {services
+              .filter((service) => !HOME_EXCLUDED_SERVICE_IDS.has(service.id))
+              .map((service, index) => (
               <article key={service.id} className="transition duration-300 hover:-translate-y-1">
                 <div className="relative w-full aspect-square rounded-2xl overflow-hidden">
                   <Image

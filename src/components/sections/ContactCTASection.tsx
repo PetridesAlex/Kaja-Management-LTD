@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { type FormEvent, useState } from "react";
+import emailjs from "@emailjs/browser";
 import { motion } from "motion/react";
-import { Mail, PhoneCall } from "lucide-react";
+import { CheckCircle2, Mail, PhoneCall } from "lucide-react";
 import ScrollReveal from "@/components/animated/ScrollReveal";
 import Input from "@/components/shared/Input";
 import PrimaryButton from "@/components/shared/PrimaryButton";
@@ -10,39 +11,76 @@ import SectionTitle from "@/components/shared/SectionTitle";
 import Select from "@/components/shared/Select";
 
 type FormErrors = {
-  name?: string;
-  email?: string;
-  phone?: string;
-  propertyType?: string;
-  message?: string;
+  full_name?: string;
+  business_email?: string;
+  direct_phone?: string;
+  property_type?: string;
+  notes?: string;
+};
+
+const INITIAL_FORM = {
+  full_name: "",
+  business_email: "",
+  direct_phone: "",
+  property_type: "Apartment Building",
+  notes: "",
 };
 
 export default function ContactCTASection() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [propertyType, setPropertyType] = useState("Apartment Building");
-  const [message, setMessage] = useState("");
+  const [form, setForm] = useState(INITIAL_FORM);
   const [errors, setErrors] = useState<FormErrors>({});
+  const [loading, setLoading] = useState(false);
   const [ok, setOk] = useState("");
+  const [submitError, setSubmitError] = useState("");
 
-  const submit = () => {
+  const handleChange = (field: keyof typeof INITIAL_FORM, value: string) => {
+    setForm((prev) => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setOk("");
+    setSubmitError("");
+
     const nextErrors: FormErrors = {};
-    if (!name.trim()) nextErrors.name = "Name is required.";
-    if (!/^\S+@\S+\.\S+$/.test(email)) nextErrors.email = "Enter a valid email.";
-    if (!/^\+?[0-9\s]{7,}$/.test(phone)) nextErrors.phone = "Enter a valid phone number.";
-    if (!propertyType) nextErrors.propertyType = "Select property type.";
-    if (message.trim().length < 10) nextErrors.message = "Message must be at least 10 characters.";
+    if (!form.full_name.trim()) nextErrors.full_name = "Name is required.";
+    if (!/^\S+@\S+\.\S+$/.test(form.business_email)) nextErrors.business_email = "Enter a valid email.";
+    if (!/^\+?[0-9\s]{7,}$/.test(form.direct_phone)) nextErrors.direct_phone = "Enter a valid phone number.";
+    if (!form.property_type) nextErrors.property_type = "Select property type.";
+    if (form.notes.trim().length < 10) nextErrors.notes = "Message must be at least 10 characters.";
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
-    setOk("Consultation request sent successfully. Our management team will contact you shortly.");
-    setName("");
-    setEmail("");
-    setPhone("");
-    setPropertyType("Apartment Building");
-    setMessage("");
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const autoreplyId = process.env.NEXT_PUBLIC_EMAILJS_AUTOREPLY_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !autoreplyId || !publicKey) {
+      setSubmitError("Email service is not configured. Please try again later.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await emailjs.send(serviceId, templateId, form, publicKey);
+      await emailjs.send(serviceId, autoreplyId, form, publicKey);
+      setOk("Consultation request sent successfully. Our management team will contact you shortly.");
+      setForm(INITIAL_FORM);
+      setErrors({});
+    } catch (err) {
+      console.error("EmailJS error:", err);
+      const message =
+        err instanceof Error
+          ? err.message
+          : typeof err === "object" && err !== null && "text" in err
+            ? String((err as { text: unknown }).text)
+            : "Unknown error";
+      setSubmitError(`Something went wrong (${message}). Please try again or contact us directly.`);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -55,8 +93,14 @@ export default function ContactCTASection() {
         />
         <div className="grid grid-cols-1 gap-8">
           <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-brandDeep via-brand to-secondary p-5 md:p-7 shadow-2xl">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(176,138,87,0.22),transparent_35%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(31,90,74,0.2),transparent_40%)]" />
+          <div
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(176,138,87,0.22),transparent_35%)]"
+            aria-hidden
+          />
+          <div
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_100%_100%,rgba(31,90,74,0.2),transparent_40%)]"
+            aria-hidden
+          />
 
           <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-sm p-5 md:p-6 mb-5 shadow-sm">
             <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent via-secondary to-brandSoft" />
@@ -146,7 +190,7 @@ export default function ContactCTASection() {
             </div>
           </div>
 
-          <div className="rounded-2xl bg-white/95 p-5 md:p-6">
+          <form onSubmit={handleSubmit} className="relative z-10 rounded-2xl bg-white/95 p-5 md:p-6">
             <div className="mb-4">
               <p className="text-[11px] tracking-[0.16em] text-muted font-semibold">CONSULTATION FORM</p>
               <h4 className="text-slate-900 text-2xl font-semibold mt-1">Request Your Management Proposal</h4>
@@ -157,13 +201,13 @@ export default function ContactCTASection() {
 
             <div className="rounded-2xl border border-accent/25 bg-gradient-to-br from-white via-page/50 to-pageSoft/45 p-4 md:p-5">
               <div className="grid md:grid-cols-2 gap-x-4 gap-y-1">
-                <Input label="Full Name" value={name} onChange={setName} error={errors.name} placeholder="Your full name" />
-                <Input label="Business Email" value={email} onChange={setEmail} error={errors.email} placeholder="info@company.com" />
-                <Input label="Direct Phone" value={phone} onChange={setPhone} error={errors.phone} placeholder="+357 99961512" />
+                <Input label="Full Name" value={form.full_name} onChange={(v) => handleChange("full_name", v)} error={errors.full_name} placeholder="Your full name" />
+                <Input label="Business Email" value={form.business_email} onChange={(v) => handleChange("business_email", v)} error={errors.business_email} placeholder="info@company.com" />
+                <Input label="Direct Phone" value={form.direct_phone} onChange={(v) => handleChange("direct_phone", v)} error={errors.direct_phone} placeholder="+357 99961512" />
                 <Select
                   label="Property Type"
-                  value={propertyType}
-                  onChange={setPropertyType}
+                  value={form.property_type}
+                  onChange={(v) => handleChange("property_type", v)}
                   options={[
                     { label: "Apartment Building", value: "Apartment Building" },
                     { label: "Mixed-Use Building", value: "Mixed-Use Building" },
@@ -177,10 +221,10 @@ export default function ContactCTASection() {
               <div className="mt-2">
                 <Input
                   label="Notes"
-                  value={message}
-                  onChange={setMessage}
+                  value={form.notes}
+                  onChange={(v) => handleChange("notes", v)}
                   multiline
-                  error={errors.message}
+                  error={errors.notes}
                   placeholder="Tell us briefly what support you need."
                 />
               </div>
@@ -189,14 +233,44 @@ export default function ContactCTASection() {
             <div className="mt-4 rounded-xl bg-brand/5 border border-accent/20 px-4 py-3 flex items-center justify-between gap-3 flex-wrap">
               <p className="text-xs text-slate-600">Response time: usually within 24 hours.</p>
               <PrimaryButton
-                onClick={submit}
-                className="w-auto min-h-[44px] px-5 py-2.5 text-sm rounded-lg shadow-sm bg-gradient-to-r from-brand to-secondary hover:opacity-95"
+                type="submit"
+                disabled={loading}
+                className="w-auto min-h-[44px] px-5 py-2.5 text-sm rounded-lg shadow-sm bg-gradient-to-r from-brand to-secondary hover:opacity-95 disabled:opacity-60"
               >
-                Request Management Consultation
+                {loading ? "Sending…" : "Request Management Consultation"}
               </PrimaryButton>
             </div>
-            {ok ? <p className="text-brand text-sm mt-3">{ok}</p> : null}
-          </div>
+            {ok && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="mt-4 rounded-xl border border-brand/20 bg-gradient-to-r from-brand/5 via-secondary/5 to-brand/5 px-5 py-4 flex items-start gap-3"
+              >
+                <CheckCircle2 className="h-5 w-5 text-brand mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-brand font-semibold text-sm">Message Sent Successfully</p>
+                  <p className="text-slate-600 text-xs mt-1">Our management team will contact you shortly. Typical response time is within 24 hours.</p>
+                </div>
+              </motion.div>
+            )}
+            {submitError && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="mt-4 rounded-xl border border-red-200 bg-red-50 px-5 py-4 flex items-start gap-3"
+              >
+                <svg className="h-5 w-5 text-red-500 mt-0.5 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden>
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z" clipRule="evenodd" />
+                </svg>
+                <div>
+                  <p className="text-red-700 font-semibold text-sm">Unable to Send</p>
+                  <p className="text-red-600/80 text-xs mt-1">{submitError}</p>
+                </div>
+              </motion.div>
+            )}
+          </form>
           </div>
         </div>
       </section>
