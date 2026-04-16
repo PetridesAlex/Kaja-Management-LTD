@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import SectionTitle from "@/components/shared/SectionTitle";
 
@@ -29,14 +29,6 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, 4200);
-
-    return () => clearInterval(interval);
-  }, []);
 
   const active = testimonials[activeIndex];
 

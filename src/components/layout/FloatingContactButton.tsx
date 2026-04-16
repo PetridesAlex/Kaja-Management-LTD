@@ -16,7 +16,7 @@ const channels = [
   },
   {
     id: "facebook",
-    href: "https://www.facebook.com/",
+    href: "https://www.facebook.com/people/Kaja-Management/61570694188025/?ref=1",
     label: "Facebook",
     bgClass: "bg-secondary",
     icon: (
@@ -77,7 +77,7 @@ export default function FloatingContactButton() {
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="rounded-full h-14 w-14 shadow-2xl border border-accent/35 bg-gradient-to-br from-secondary via-brandSoft to-accent text-white flex items-center justify-center"
+        className={`rounded-full h-14 w-14 shadow-2xl border border-accent/35 bg-gradient-to-br from-secondary via-brandSoft to-accent text-white flex items-center justify-center transition-transform ${open ? "" : "floating-contact-fab"}`}
         aria-label={open ? "Close quick contact menu" : "Open quick contact menu"}
       >
         {open ? (

@@ -1,8 +1,19 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { Check, Sparkles } from "lucide-react";
 import PageContainer from "@/components/layout/PageContainer";
 import CleaningWhatsAppFloating, { CLEANING_WHATSAPP_HREF } from "@/components/services/CleaningWhatsAppCTA";
+import { pageTitle, SITE_DESCRIPTION } from "@/lib/site-metadata";
+
+const desc = `${SITE_DESCRIPTION} KAJA Green Clean: deep, regular, and move-in/move-out cleaning for managed properties in Cyprus.`;
+
+export const metadata: Metadata = {
+  title: "KAJA Green Clean",
+  description: desc,
+  openGraph: { title: pageTitle("KAJA Green Clean"), description: desc },
+  twitter: { title: pageTitle("KAJA Green Clean"), description: desc }
+};
 
 const cleaningServiceItems = [
   "Deep cleaning",

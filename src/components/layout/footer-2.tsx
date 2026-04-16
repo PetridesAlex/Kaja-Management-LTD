@@ -83,7 +83,7 @@ export default function Footer2() {
                 </svg>
               </a>
               <a
-                href="https://www.facebook.com/"
+                href="https://www.facebook.com/people/Kaja-Management/61570694188025/?ref=1"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Facebook"

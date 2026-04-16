@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -9,7 +10,30 @@ import RequestViewingButton from "@/components/shared/RequestViewingButton";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { agents } from "@/data/agents";
 import { properties } from "@/data/properties";
+import { pageTitle, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site-metadata";
 import { formatCurrency } from "@/utils/format";
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const property = properties.find((item) => item.id === id);
+  if (!property) {
+    return { title: "Property", description: SITE_DESCRIPTION };
+  }
+  const description = `${property.description} ${property.location} · ${property.type}. Professional property management in Cyprus — ${SITE_NAME}.`;
+  const ogTitle = pageTitle(property.title);
+  return {
+    title: property.title,
+    description,
+    openGraph: {
+      title: ogTitle,
+      description
+    },
+    twitter: {
+      title: ogTitle,
+      description
+    }
+  };
+}
 
 export default async function PropertyDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;

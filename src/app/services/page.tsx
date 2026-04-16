@@ -1,8 +1,25 @@
+import type { Metadata } from "next";
 import PageContainer from "@/components/layout/PageContainer";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { services } from "@/data/services";
 import Link from "next/link";
 import Image from "next/image";
+import { pageTitle, SITE_DESCRIPTION } from "@/lib/site-metadata";
+
+const servicesDescription = `${SITE_DESCRIPTION} Explore communal and individual management, cleaning, renovation, garden & pool, and pest control.`;
+
+export const metadata: Metadata = {
+  title: "Services",
+  description: servicesDescription,
+  openGraph: {
+    title: pageTitle("Services"),
+    description: servicesDescription
+  },
+  twitter: {
+    title: pageTitle("Services"),
+    description: servicesDescription
+  }
+};
 
 const cleaningModels = [
   {
@@ -95,7 +112,7 @@ const serviceLinks: Record<string, string> = {
 
 const managementSocial = {
   instagram: "https://www.instagram.com/kaja_management/",
-  facebook: "https://www.facebook.com/",
+  facebook: "https://www.facebook.com/people/Kaja-Management/61570694188025/?ref=1",
   linkedin: "https://www.linkedin.com/company/kajamanagement/"
 } as const;
 

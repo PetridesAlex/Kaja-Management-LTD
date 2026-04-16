@@ -157,7 +157,7 @@ export default function SiteHeader() {
             </svg>
           </a>
           <a
-            href="https://www.facebook.com/"
+            href="https://www.facebook.com/people/Kaja-Management/61570694188025/?ref=1"
             target="_blank"
             rel="noreferrer"
             aria-label="Facebook"
@@ -193,7 +193,7 @@ export default function SiteHeader() {
         </a>
 
         <a
-          href="https://www.facebook.com/"
+          href="https://www.facebook.com/people/Kaja-Management/61570694188025/?ref=1"
           target="_blank"
           rel="noreferrer"
           aria-label="Facebook"
@@ -294,7 +294,7 @@ export default function SiteHeader() {
                 </svg>
               </a>
               <a
-                href="https://www.facebook.com/"
+                href="https://www.facebook.com/people/Kaja-Management/61570694188025/?ref=1"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Facebook"

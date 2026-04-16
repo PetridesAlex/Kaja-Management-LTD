@@ -5,10 +5,25 @@ import FloatingContactButton from "@/components/layout/FloatingContactButton";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import Preloader from "@/components/layout/Preloader";
+import { DEFAULT_PAGE_TITLE, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site-metadata";
 
 export const metadata: Metadata = {
-  title: "Kaja Management LTD | Premium Real Estate",
-  description: "Modern real estate and management website.",
+  title: {
+    default: DEFAULT_PAGE_TITLE,
+    template: `%s | ${SITE_NAME}`
+  },
+  description: SITE_DESCRIPTION,
+  openGraph: {
+    title: DEFAULT_PAGE_TITLE,
+    description: SITE_DESCRIPTION,
+    type: "website",
+    locale: "en_GB"
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_PAGE_TITLE,
+    description: SITE_DESCRIPTION
+  },
   icons: {
     icon: "/images/logo/property-needs-logo.webp",
     shortcut: "/images/logo/property-needs-logo.webp",

@@ -122,7 +122,7 @@ export default function ContactCTASection() {
                   </svg>
                 </a>
                 <a
-                  href="https://www.facebook.com/"
+                  href="https://www.facebook.com/people/Kaja-Management/61570694188025/?ref=1"
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center justify-center rounded-lg bg-secondary text-white p-2 shadow-sm"
