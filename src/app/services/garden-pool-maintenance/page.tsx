@@ -1,15 +1,13 @@
-import type { Metadata } from "next";
 import FacilityCareServicePage from "@/components/services/FacilityCareServicePage";
-import { pageTitle, SITE_DESCRIPTION } from "@/lib/site-metadata";
+import { createPageMetadata, SITE_DESCRIPTION } from "@/lib/site-metadata";
 
 const desc = `${SITE_DESCRIPTION} Garden, pool, and outdoor maintenance for communal and private portfolios in Cyprus.`;
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Garden & Pool Maintenance",
   description: desc,
-  openGraph: { title: pageTitle("Garden & Pool Maintenance"), description: desc },
-  twitter: { title: pageTitle("Garden & Pool Maintenance"), description: desc }
-};
+  path: "/services/garden-pool-maintenance"
+});
 
 export default function GardenPoolMaintenancePage() {
   return (

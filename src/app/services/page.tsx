@@ -1,25 +1,17 @@
-import type { Metadata } from "next";
 import PageContainer from "@/components/layout/PageContainer";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { services } from "@/data/services";
 import Link from "next/link";
 import Image from "next/image";
-import { pageTitle, SITE_DESCRIPTION } from "@/lib/site-metadata";
+import { createPageMetadata, SITE_DESCRIPTION } from "@/lib/site-metadata";
 
 const servicesDescription = `${SITE_DESCRIPTION} Explore communal and individual management, cleaning, renovation, garden & pool, and pest control.`;
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Services",
   description: servicesDescription,
-  openGraph: {
-    title: pageTitle("Services"),
-    description: servicesDescription
-  },
-  twitter: {
-    title: pageTitle("Services"),
-    description: servicesDescription
-  }
-};
+  path: "/services"
+});
 
 const cleaningModels = [
   {

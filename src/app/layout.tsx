@@ -5,18 +5,34 @@ import FloatingContactButton from "@/components/layout/FloatingContactButton";
 import SiteHeader from "@/components/layout/SiteHeader";
 import SiteFooter from "@/components/layout/SiteFooter";
 import Preloader from "@/components/layout/Preloader";
-import { DEFAULT_PAGE_TITLE, SITE_DESCRIPTION, SITE_NAME } from "@/lib/site-metadata";
+import JsonLd from "@/components/seo/JsonLd";
+import {
+  DEFAULT_PAGE_TITLE,
+  getOrganizationJsonLd,
+  getWebSiteJsonLd,
+  SITE_DESCRIPTION,
+  SITE_NAME
+} from "@/lib/site-metadata";
+import { getSiteUrl } from "@/lib/site-url";
+
+const siteUrl = getSiteUrl();
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: DEFAULT_PAGE_TITLE,
     template: `%s | ${SITE_NAME}`
   },
   description: SITE_DESCRIPTION,
+  alternates: {
+    canonical: siteUrl
+  },
   openGraph: {
     title: DEFAULT_PAGE_TITLE,
     description: SITE_DESCRIPTION,
+    url: siteUrl,
     type: "website",
+    siteName: SITE_NAME,
     locale: "en_GB"
   },
   twitter: {
@@ -45,6 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${bodyFont.variable} ${displayFont.variable} font-body antialiased`}>
+        <JsonLd data={[getOrganizationJsonLd(), getWebSiteJsonLd()]} />
         <Preloader />
         <SiteHeader />
         {children}

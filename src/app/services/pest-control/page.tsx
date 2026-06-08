@@ -1,15 +1,13 @@
-import type { Metadata } from "next";
 import FacilityCareServicePage from "@/components/services/FacilityCareServicePage";
-import { pageTitle, SITE_DESCRIPTION } from "@/lib/site-metadata";
+import { createPageMetadata, SITE_DESCRIPTION } from "@/lib/site-metadata";
 
 const desc = `${SITE_DESCRIPTION} Preventive and responsive pest control for buildings and tenants, with documented programs.`;
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Pest Control",
   description: desc,
-  openGraph: { title: pageTitle("Pest Control"), description: desc },
-  twitter: { title: pageTitle("Pest Control"), description: desc }
-};
+  path: "/services/pest-control"
+});
 
 export default function PestControlPage() {
   return (
