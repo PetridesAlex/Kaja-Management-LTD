@@ -1,1 +1,1 @@
-export { default } from "@/app/services/individual-property-management/page";
+export { default, metadata } from "@/app/services/individual-property-management/page";

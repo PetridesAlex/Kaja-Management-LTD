@@ -1,1 +1,1 @@
-export { default } from "@/app/services/garden-pool-maintenance/page";
+export { default, metadata } from "@/app/services/garden-pool-maintenance/page";

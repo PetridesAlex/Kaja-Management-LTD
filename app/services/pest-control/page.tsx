@@ -1,1 +1,1 @@
-export { default } from "@/app/services/pest-control/page";
+export { default, metadata } from "@/app/services/pest-control/page";
