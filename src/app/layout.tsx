@@ -13,24 +13,25 @@ import {
   SITE_DESCRIPTION,
   SITE_NAME
 } from "@/lib/site-metadata";
-import { getSiteUrl } from "@/lib/site-url";
+import { absoluteUrl, getSiteUrl } from "@/lib/site-url";
 
 const siteUrl = getSiteUrl();
+const homeUrl = absoluteUrl("/");
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(homeUrl),
   title: {
     default: DEFAULT_PAGE_TITLE,
     template: `%s | ${SITE_NAME}`
   },
   description: SITE_DESCRIPTION,
   alternates: {
-    canonical: siteUrl
+    canonical: homeUrl
   },
   openGraph: {
     title: DEFAULT_PAGE_TITLE,
     description: SITE_DESCRIPTION,
-    url: siteUrl,
+    url: homeUrl,
     type: "website",
     siteName: SITE_NAME,
     locale: "en_GB"
