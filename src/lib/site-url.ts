@@ -1,5 +1,5 @@
 /** Canonical production origin for all SEO outputs (sitemap, robots, metadata). */
-export const PRODUCTION_SITE_URL = "https://www.kajamanagement.eu";
+export const PRODUCTION_SITE_URL = "https://kajamanagement.eu";
 
 export function getSiteUrl(): string {
   const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim();
