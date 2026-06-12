@@ -1,6 +1,17 @@
 {
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.kajamanagement.eu"
+        }
+      ],
+      "destination": "https://kajamanagement.eu/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
